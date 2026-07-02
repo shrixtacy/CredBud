@@ -1,0 +1,6 @@
+{
+  "name": "CreditBuddy",
+  "description": "Cinematic, editorial, story-driven landing page for India's student-first financial ecosystem.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
