@@ -23,7 +23,7 @@ export const StudentStories = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-32 bg-bg-secondary w-full overflow-hidden relative">
+    <section ref={containerRef} className="py-32 bg-bg-secondary w-full overflow-hidden relative bg-elements">
       <div className="max-w-7xl mx-auto w-full px-6 md:px-12 mb-16">
         <h2 className="font-chillax text-4xl md:text-6xl font-medium tracking-tight">
           Don&apos;t just take our <span className="editorial-italic text-accent-blue">word</span> for it.

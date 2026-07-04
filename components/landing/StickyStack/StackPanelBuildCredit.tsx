@@ -30,7 +30,7 @@ export const StackPanelBuildCredit = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="sticky top-0 h-screen w-full bg-bg-primary flex items-center p-8 border-b border-ink/10">
+    <div ref={containerRef} className="sticky top-0 h-screen w-full bg-bg-primary flex items-center p-8 border-b border-ink/10 bg-elements">
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         
         {/* Copy */}

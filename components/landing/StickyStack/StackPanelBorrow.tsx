@@ -25,7 +25,7 @@ export const StackPanelBorrow = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="sticky top-0 h-screen w-full bg-bg-primary flex items-center justify-center p-8 border-b border-ink/10 overflow-hidden">
+    <div ref={containerRef} className="sticky top-0 h-screen w-full bg-bg-primary flex items-center justify-center p-8 border-b border-ink/10 overflow-hidden bg-elements">
       <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
         
         {/* Left Side: Copy */}

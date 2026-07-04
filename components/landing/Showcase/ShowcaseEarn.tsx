@@ -24,7 +24,7 @@ export const ShowcaseEarn = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-32 px-6 md:px-12 bg-bg-secondary w-full overflow-hidden">
+    <section ref={containerRef} className="py-32 px-6 md:px-12 bg-bg-secondary w-full overflow-hidden bg-elements">
       <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center gap-16">
         
         {/* Left Side: Large staggered grid */}

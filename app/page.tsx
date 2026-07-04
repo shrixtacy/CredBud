@@ -2,7 +2,8 @@ import { SmoothScroll } from '@/components/landing/shared/SmoothScroll';
 import { GrainOverlay } from '@/components/landing/shared/GrainOverlay';
 import { IntroSequence } from '@/components/landing/IntroSequence';
 import { Hero } from '@/components/landing/Hero';
-import { AtAGlanceStrip } from '@/components/landing/AtAGlanceStrip';
+import { HeroMarquee } from '@/components/landing/HeroMarquee';
+import { WhyWeExist } from '@/components/landing/WhyWeExist';
 import { StickyStack } from '@/components/landing/StickyStack/StickyStack';
 import { HorizontalJourney } from '@/components/landing/HorizontalJourney/HorizontalJourney';
 import { SignatureMarquee } from '@/components/landing/SignatureMarquee';
@@ -22,7 +23,8 @@ export default function Home() {
       <main className="relative w-full block">
         <IntroSequence />
         <Hero />
-        <AtAGlanceStrip />
+        <HeroMarquee />
+        <WhyWeExist />
         <StickyStack />
         <HorizontalJourney />
         <SignatureMarquee />

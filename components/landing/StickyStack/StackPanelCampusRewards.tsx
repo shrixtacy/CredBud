@@ -24,7 +24,7 @@ export const StackPanelCampusRewards = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="sticky top-0 h-screen w-full bg-bg-secondary flex items-center p-8 border-b border-ink/10 overflow-hidden relative">
+    <div ref={containerRef} className="sticky top-0 h-screen w-full bg-bg-secondary flex items-center p-8 border-b border-ink/10 overflow-hidden relative bg-elements">
       
       {/* Background Scrapbook Elements */}
       <div className="absolute inset-0 pointer-events-none flex justify-center items-center">
