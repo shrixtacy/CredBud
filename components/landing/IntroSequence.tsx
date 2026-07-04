@@ -1,52 +1,69 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { KeywordHighlight } from './shared/KeywordHighlight';
-import { SectionWrapper } from './shared/SectionWrapper';
 
 export const IntroSequence = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
   const act1Ref = useRef<HTMLDivElement>(null);
   const act2Ref = useRef<HTMLDivElement>(null);
   const act3Ref = useRef<HTMLDivElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
+  // Hold ctx in a ref so we can revert it inside onComplete
+  // (before React unmounts the nodes) to avoid removeChild errors.
+  const ctxRef = useRef<gsap.Context | null>(null);
+  const [done, setDone] = useState(false);
 
   useEffect(() => {
-    let ctx = gsap.context(() => {
+    // Lock scroll while intro plays
+    document.body.style.overflow = 'hidden';
+
+    ctxRef.current = gsap.context(() => {
       const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top top',
-          end: '+=300%',
-          pin: true,
-          scrub: 1,
+        onComplete: () => {
+          document.body.style.overflow = '';
+          // Revert GSAP while DOM nodes still exist, THEN remove from React tree
+          if (ctxRef.current) {
+            ctxRef.current.revert();
+            ctxRef.current = null;
+          }
+          setDone(true);
         },
       });
 
-      // Act 1
-      tl.to(act1Ref.current, { opacity: 1, y: 0, duration: 1 })
-        .to(act1Ref.current, { opacity: 0, y: -50, duration: 1 }, '+=0.5');
+      // Act 1 — "Are you a student?"
+      tl.to(act1Ref.current, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' })
+        .to(act1Ref.current, { opacity: 0, y: -40, duration: 0.5, ease: 'power3.in' }, '+=0.8');
 
-      // Act 2
-      tl.to(act2Ref.current, { opacity: 1, y: 0, duration: 1 })
-        .to(act2Ref.current, { opacity: 0, y: -50, duration: 1 }, '+=0.5');
+      // Act 2 — "Struggling with low funds?"
+      tl.to(act2Ref.current, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' })
+        .to(act2Ref.current, { opacity: 0, y: -40, duration: 0.5, ease: 'power3.in' }, '+=0.8');
 
-      // Act 3
-      tl.to(act3Ref.current, { opacity: 1, scale: 1, duration: 1 })
-        .to(act3Ref.current, { opacity: 0, scale: 1.5, duration: 1 }, '+=0.5');
+      // Act 3 — "CreditBuddy Hai Na!!"
+      tl.to(act3Ref.current, { opacity: 1, scale: 1, duration: 0.7, ease: 'back.out(1.4)' })
+        .to(act3Ref.current, { opacity: 0, scale: 1.15, duration: 0.5, ease: 'power3.in' }, '+=0.9');
 
-      // Final Logo / Hero entry prep
-      tl.to(logoRef.current, { opacity: 1, y: 0, duration: 1 });
+      // Fade out the entire overlay
+      tl.to(overlayRef.current, { opacity: 0, duration: 0.6, ease: 'power2.inOut' });
+    });
 
-    }, containerRef);
-
-    return () => ctx.revert();
+    return () => {
+      document.body.style.overflow = '';
+      // Only revert if onComplete hasn't already done so
+      if (ctxRef.current) {
+        ctxRef.current.revert();
+        ctxRef.current = null;
+      }
+    };
   }, []);
 
+  if (done) return null;
+
   return (
-    <div ref={containerRef} className="relative h-screen w-full bg-bg-primary text-ink overflow-hidden flex items-center justify-center">
-      
+    <div
+      ref={overlayRef}
+      className="fixed inset-0 z-[9999] bg-bg-primary text-ink flex items-center justify-center overflow-hidden pointer-events-none"
+    >
       {/* Act 1 */}
       <div ref={act1Ref} className="absolute flex flex-col items-center text-center opacity-0 translate-y-[50px]">
         <h2 className="font-chillax text-4xl md:text-7xl tracking-tight">
@@ -63,16 +80,9 @@ export const IntroSequence = () => {
 
       {/* Act 3 */}
       <div ref={act3Ref} className="absolute flex flex-col items-center text-center opacity-0 scale-90">
-        <h2 className="font-chillax headline text-accent-indigo">
+        <h2 className="font-chillax text-5xl md:text-7xl tracking-tight text-accent-indigo font-bold">
           CreditBuddy Hai Na!!
         </h2>
-      </div>
-
-      {/* Logo morphs in */}
-      <div ref={logoRef} className="absolute top-8 left-8 opacity-0 -translate-y-4">
-        <h1 className="font-chillax text-2xl font-bold tracking-tight uppercase">
-          Credit<span className="editorial-italic normal-case">Buddy</span>
-        </h1>
       </div>
     </div>
   );

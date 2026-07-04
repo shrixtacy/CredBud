@@ -24,7 +24,7 @@ export const StackPanelEarn = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="sticky top-0 h-screen w-full bg-bg-secondary flex items-center p-8 border-b border-ink/10">
+    <div ref={containerRef} className="sticky top-0 h-screen w-full bg-bg-secondary flex items-center p-8 border-b border-ink/10 bg-elements">
       <div className="max-w-7xl mx-auto w-full h-full flex flex-col justify-center">
         
         <div className="mb-12">

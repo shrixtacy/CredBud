@@ -25,7 +25,7 @@ export const StackPanelFinancialFreedom = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="sticky top-0 h-screen w-full bg-bg-primary flex items-center justify-center p-8 overflow-hidden">
+    <div ref={containerRef} className="sticky top-0 h-screen w-full bg-bg-primary flex items-center justify-center p-8 overflow-hidden bg-elements">
       <div className="freedom-text text-center w-full max-w-7xl">
         <h2 className="editorial-italic text-accent-indigo text-[3rem] sm:text-[5rem] md:text-[8rem] lg:text-[10rem] leading-none tracking-tight">
           financial freedom.

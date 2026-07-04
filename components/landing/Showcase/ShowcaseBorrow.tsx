@@ -24,7 +24,7 @@ export const ShowcaseBorrow = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-32 px-6 md:px-12 bg-bg-primary w-full">
+    <section ref={containerRef} className="py-32 px-6 md:px-12 bg-bg-primary w-full bg-elements">
       <div className="max-w-7xl mx-auto w-full">
         <div className="mb-16 max-w-3xl">
           <h2 className="borrow-showcase-item font-chillax text-4xl md:text-6xl font-medium tracking-tight mb-6">

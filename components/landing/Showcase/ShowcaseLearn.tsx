@@ -24,7 +24,7 @@ export const ShowcaseLearn = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-32 px-6 md:px-12 bg-bg-primary w-full border-t border-ink/5">
+    <section ref={containerRef} className="py-32 px-6 md:px-12 bg-bg-primary w-full border-t border-ink/5 bg-elements">
       <div className="max-w-7xl mx-auto w-full">
         
         <div className="mb-20 text-center max-w-3xl mx-auto">

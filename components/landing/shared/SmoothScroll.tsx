@@ -12,17 +12,29 @@ export const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
   const lenisRef = useRef<any>(null);
 
   useEffect(() => {
-    // We can access lenis instance if needed
-    // Update ScrollTrigger whenever lenis scrolls
     function update(time: number) {
       lenisRef.current?.lenis?.raf(time * 1000);
     }
-    
+
     gsap.ticker.add(update);
     gsap.ticker.lagSmoothing(0);
 
+    // Lenis initializes async — wait a tick before wiring ScrollTrigger
+    const timer = setTimeout(() => {
+      const lenis = lenisRef.current?.lenis;
+      if (lenis) {
+        lenis.on('scroll', ScrollTrigger.update);
+        ScrollTrigger.refresh();
+      }
+    }, 100);
+
     return () => {
+      clearTimeout(timer);
       gsap.ticker.remove(update);
+      const lenis = lenisRef.current?.lenis;
+      if (lenis) {
+        lenis.off('scroll', ScrollTrigger.update);
+      }
     };
   }, []);
 

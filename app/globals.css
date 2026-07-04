@@ -1,12 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-primary: #F5F1EA;
-  --color-bg-secondary: #EFE9DF;
-  --color-accent-blue: #4F6FFF;
-  --color-accent-indigo: #635BFF;
-  --color-ink: #2B2A28;
-  --color-ink-dark: #0F0E0D;
+  --color-bg-primary: #F0F6FF;
+  --color-bg-secondary: #E3EEFF;
+  --color-accent-blue: #2563EB;
+  --color-accent-green: #10B981;
+  --color-accent-indigo: #10B981;
+  --color-accent-yellow: #F5C518;
+  --color-ink: #0D1B2A;
+  --color-ink-dark: #050D14;
   --font-satoshi: 'Satoshi', sans-serif;
   --font-chillax: 'Chillax', sans-serif;
   --font-fraunces: var(--font-fraunces), serif;
@@ -33,7 +35,7 @@ body {
   position: absolute;
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.05;
+  opacity: 0.03;
   pointer-events: none;
   z-index: 50;
 }
@@ -48,4 +50,22 @@ body {
 .vertical-rail {
   writing-mode: vertical-rl;
   transform: rotate(180deg);
+}
+
+.bg-elements {
+  position: relative;
+  z-index: 1;
+}
+
+.bg-elements::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('/creditbuddy-elements.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.35;
+  z-index: -1;
+  pointer-events: none;
 }
