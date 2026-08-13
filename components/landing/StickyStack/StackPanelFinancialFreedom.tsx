@@ -25,14 +25,16 @@ export const StackPanelFinancialFreedom = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="sticky top-0 h-screen w-full bg-bg-primary flex items-center justify-center p-8 overflow-hidden bg-elements">
-      <div className="freedom-text text-center w-full max-w-7xl">
-        <h2 className="editorial-italic text-accent-indigo text-[3rem] sm:text-[5rem] md:text-[8rem] lg:text-[10rem] leading-none tracking-tight">
-          financial freedom.
-        </h2>
-        <p className="font-satoshi text-ink/50 uppercase tracking-[0.3em] mt-8 text-sm md:text-base">
-          Before you even graduate
-        </p>
+    <div className="sticky top-[5vh] md:top-[4vh] h-[90vh] md:h-[92vh] w-full z-[15] flex items-center justify-center my-4">
+      <div ref={containerRef} className="w-[95%] md:w-[96%] h-full bg-bg-primary flex items-center justify-center p-8 overflow-hidden bg-elements brutal-card">
+        <div className="freedom-text text-center w-full max-w-7xl">
+          <h2 className="font-bricolage font-extrabold text-accent-purple text-[3rem] sm:text-[5rem] md:text-[8rem] lg:text-[10rem] leading-none tracking-tight">
+            financial freedom.
+          </h2>
+          <p className="font-jetbrains text-ink-muted uppercase tracking-[0.3em] mt-8 text-sm md:text-base">
+            Before you even graduate ✦
+          </p>
+        </div>
       </div>
     </div>
   );

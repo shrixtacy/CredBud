@@ -4,8 +4,24 @@ import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-const ITEMS = 'BORROW • EARN • LEARN • ';
-const REPEATED = Array(8).fill(ITEMS).join('');
+const ITEMS = [
+  'no salary slip needed',
+  'borrow in 90 seconds',
+  'earn while you study',
+  'build real credit',
+  'zero hidden fees',
+  'learn money for free',
+  'student-first, always',
+];
+
+const REPEATED = [...ITEMS, ...ITEMS].map((item, i) => (
+  <span key={i} className="flex items-center gap-8 flex-shrink-0">
+    <span className="font-bricolage font-bold text-2xl md:text-3xl text-bg-primary tracking-tight uppercase whitespace-nowrap">
+      {item}
+    </span>
+    <span className="font-bricolage font-bold text-2xl md:text-3xl text-accent-lime">✦</span>
+  </span>
+));
 
 export const HeroMarquee = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -47,18 +63,18 @@ export const HeroMarquee = () => {
 
   return (
     <div ref={containerRef} className="relative w-full overflow-hidden" style={{ paddingBlock: '3rem' }}>
-      {/* Inner strip is rotated inside the clipping container */}
-      <div className="w-full bg-accent-blue py-6 md:py-8 flex items-center transform rotate-2 scale-110 shadow-2xl">
-        <div className="flex whitespace-nowrap">
+      {/* Dark strip with slight rotation, matching Figma */}
+      <div className="w-full bg-ink border-y-[1.6px] border-ink py-4 md:py-5 flex items-center transform -rotate-1 scale-110 shadow-2xl">
+        <div className="flex whitespace-nowrap items-center gap-8">
           <div
             ref={track1Ref}
-            className="font-chillax font-bold text-3xl md:text-5xl text-white tracking-tighter uppercase px-6 flex-shrink-0"
+            className="flex items-center gap-8 flex-shrink-0"
           >
             {REPEATED}
           </div>
           <div
             ref={track2Ref}
-            className="font-chillax font-bold text-3xl md:text-5xl text-white tracking-tighter uppercase px-6 flex-shrink-0"
+            className="flex items-center gap-8 flex-shrink-0"
           >
             {REPEATED}
           </div>
