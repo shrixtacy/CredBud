@@ -50,13 +50,15 @@ export const SignatureMarquee = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative w-full overflow-hidden bg-accent-blue py-12 md:py-24 flex items-center transform -rotate-2 scale-110 shadow-2xl z-20">
-      <div className="flex whitespace-nowrap overflow-hidden w-full">
-        <div ref={text1Ref} className="font-chillax font-bold text-6xl md:text-[8rem] text-bg-primary tracking-tighter uppercase px-8 flex-shrink-0">
-          STUDENT FIRST • NO HIDDEN FEES • INSTANT APPROVAL • STUDENT FIRST • NO HIDDEN FEES • INSTANT APPROVAL •
-        </div>
-        <div ref={text2Ref} className="font-chillax font-bold text-6xl md:text-[8rem] text-bg-primary tracking-tighter uppercase px-8 flex-shrink-0">
-          STUDENT FIRST • NO HIDDEN FEES • INSTANT APPROVAL • STUDENT FIRST • NO HIDDEN FEES • INSTANT APPROVAL •
+    <section ref={containerRef} className="relative w-full overflow-hidden z-20 py-8 md:py-16">
+      <div className="w-full bg-ink border-y-[1.6px] border-ink py-10 md:py-16 flex items-center transform -rotate-2 scale-110 shadow-2xl">
+        <div className="flex whitespace-nowrap overflow-hidden w-full">
+          <div ref={text1Ref} className="font-bricolage font-extrabold text-6xl md:text-[7rem] text-bg-primary tracking-tighter uppercase px-8 flex-shrink-0">
+            STUDENT FIRST <span className="text-accent-lime">✦</span> NO HIDDEN FEES <span className="text-accent-lime">✦</span> INSTANT APPROVAL <span className="text-accent-lime">✦</span> STUDENT FIRST <span className="text-accent-lime">✦</span> NO HIDDEN FEES <span className="text-accent-lime">✦</span> INSTANT APPROVAL <span className="text-accent-lime">✦</span>
+          </div>
+          <div ref={text2Ref} className="font-bricolage font-extrabold text-6xl md:text-[7rem] text-bg-primary tracking-tighter uppercase px-8 flex-shrink-0">
+            STUDENT FIRST <span className="text-accent-lime">✦</span> NO HIDDEN FEES <span className="text-accent-lime">✦</span> INSTANT APPROVAL <span className="text-accent-lime">✦</span> STUDENT FIRST <span className="text-accent-lime">✦</span> NO HIDDEN FEES <span className="text-accent-lime">✦</span> INSTANT APPROVAL <span className="text-accent-lime">✦</span>
+          </div>
         </div>
       </div>
     </section>

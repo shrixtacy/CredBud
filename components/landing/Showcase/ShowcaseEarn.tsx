@@ -24,36 +24,39 @@ export const ShowcaseEarn = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-32 px-6 md:px-12 bg-bg-secondary w-full overflow-hidden bg-elements">
+    <section ref={containerRef} className="py-20 md:py-24 px-6 md:px-12 bg-bg-secondary w-[95%] md:w-[96%] mx-auto my-6 md:my-10 brutal-border bg-elements overflow-hidden rounded-[2rem] md:rounded-[3.5rem]">
       <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center gap-16">
-        
+
         {/* Left Side: Large staggered grid */}
         <div className="w-full md:w-1/2 relative h-[500px]">
-          <div className="earn-showcase-fade absolute top-0 left-0 w-[60%] h-[60%] bg-white shadow-xl p-6 rounded-2xl -rotate-3 z-10 flex flex-col justify-between">
-            <span className="editorial-italic text-ink/40">Referral</span>
-            <div className="font-chillax text-4xl text-accent-indigo">₹500 <span className="text-lg text-ink/50 font-satoshi">/friend</span></div>
+          <div className="earn-showcase-fade absolute top-0 left-0 w-[60%] h-[60%] bg-white brutal-card p-6 -rotate-3 z-10 flex flex-col justify-between">
+            <span className="font-jetbrains text-xs text-ink-muted uppercase">// Referral</span>
+            <div className="font-bricolage font-extrabold text-4xl text-accent-purple">₹500 <span className="text-lg text-ink-muted font-jakarta">/friend</span></div>
           </div>
-          <div className="earn-showcase-fade absolute bottom-0 right-0 w-[65%] h-[55%] bg-accent-blue text-white shadow-2xl p-6 rounded-2xl rotate-2 z-20 flex flex-col justify-between">
-            <span className="editorial-italic text-white/50">Campus Gig</span>
+          <div className="earn-showcase-fade absolute bottom-0 right-0 w-[65%] h-[55%] bg-accent-gold text-ink brutal-card p-6 rotate-2 z-20 flex flex-col justify-between">
+            <span className="font-jetbrains text-xs text-ink uppercase">// Campus Gig</span>
             <div>
-               <div className="font-satoshi font-medium text-xl">Event Promo</div>
-               <div className="font-chillax text-3xl mt-2">₹1,200</div>
+              <div className="font-jakarta font-bold text-xl">Event Promo</div>
+              <div className="font-bricolage font-extrabold text-3xl mt-2">₹1,200</div>
             </div>
           </div>
         </div>
 
         {/* Right Side: Copy */}
         <div className="w-full md:w-1/2 flex flex-col space-y-6">
-          <h2 className="earn-showcase-fade font-chillax text-4xl md:text-6xl font-medium tracking-tight">
+          <span className="earn-showcase-fade font-jetbrains text-ink font-normal tracking-widest uppercase text-xs brutal-pill bg-accent-gold px-4 py-1.5 w-fit">
+            // earn feature
+          </span>
+          <h2 className="earn-showcase-fade font-bricolage text-4xl md:text-6xl font-extrabold tracking-tight">
             Turn your free time into <KeywordHighlight text="income" />.
           </h2>
-          <p className="earn-showcase-fade font-satoshi text-ink/70 text-lg leading-relaxed">
+          <p className="earn-showcase-fade font-jakarta text-ink-muted text-lg leading-relaxed">
             Don&apos;t just borrow. Earn. Our curated campus gig board and powerful referral program help you make money while you study.
           </p>
           <div className="earn-showcase-fade pt-4">
-             <button className="px-6 py-3 border border-ink/20 rounded-full font-satoshi font-medium hover:bg-ink hover:text-white transition-colors duration-300">
-               Explore Gigs
-             </button>
+            <button className="px-6 py-3 bg-ink text-bg-primary rounded-full font-bricolage font-bold brutal-pill brutal-shadow-purple hover:scale-105 transition-transform duration-300">
+              Explore Gigs →
+            </button>
           </div>
         </div>
 

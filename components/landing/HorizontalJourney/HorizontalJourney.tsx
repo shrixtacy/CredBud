@@ -24,7 +24,7 @@ export const HorizontalJourney = () => {
   useEffect(() => {
     let ctx = gsap.context(() => {
       const sections = gsap.utils.toArray('.horizontal-scene');
-      
+
       gsap.to(sections, {
         xPercent: -100 * (sections.length - 1),
         ease: "none",
@@ -43,36 +43,36 @@ export const HorizontalJourney = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="h-screen w-full overflow-hidden bg-ink-dark flex items-center relative z-10">
+    <section ref={containerRef} className="h-screen w-full overflow-hidden bg-bg-primary flex items-center relative z-10">
       <div ref={scrollWrapperRef} className="w-[700vw] h-full flex">
-        
+
         {scenes.map((scene, i) => (
-          <div key={scene.id} className="horizontal-scene w-[100vw] h-full flex-shrink-0 flex items-center justify-center p-8 md:p-24 relative overflow-hidden border-r border-white/5">
-            
+          <div key={scene.id} className="horizontal-scene w-[100vw] h-full flex-shrink-0 flex items-center justify-center p-8 md:p-24 relative overflow-hidden border-r border-ink/10">
+
             {/* Thematic Backgrounds */}
-            <div className="absolute inset-0 opacity-20 bg-gradient-to-br from-transparent to-accent-blue mix-blend-overlay" />
-            
+            <div className="absolute inset-0 opacity-10 bg-gradient-to-br from-transparent to-accent-lime" />
+
             <div className="relative z-10 w-full max-w-4xl flex flex-col items-center text-center">
-              <span className="editorial-italic text-accent-blue text-2xl mb-8">
+              <span className="font-jetbrains text-ink brutal-pill bg-accent-lime px-4 py-1.5 text-sm mb-8">
                 Phase 0{i + 1}
               </span>
-              <h2 className="font-chillax text-6xl md:text-8xl lg:text-[7rem] font-bold text-white tracking-tighter leading-tight mb-6">
+              <h2 className="font-bricolage text-6xl md:text-8xl lg:text-[7rem] font-extrabold text-ink tracking-tighter leading-tight mb-6">
                 {scene.title}
               </h2>
-              <p className="font-satoshi text-xl text-white/60">
+              <p className="font-jakarta text-xl text-ink-muted">
                 {scene.desc}
               </p>
             </div>
-            
+
             {/* Very large subtle background typography for texture */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none">
-              <span className="font-chillax font-bold text-[15vw] text-white/[0.02] tracking-tighter whitespace-nowrap">
+              <span className="font-bricolage font-extrabold text-[15vw] text-ink/[0.03] tracking-tighter whitespace-nowrap">
                 {scene.title}
               </span>
             </div>
           </div>
         ))}
-        
+
       </div>
     </section>
   );

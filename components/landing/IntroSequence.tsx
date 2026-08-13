@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { KeywordHighlight } from './shared/KeywordHighlight';
+import { useLenis } from '@studio-freight/react-lenis';
 
 export const IntroSequence = () => {
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -13,15 +14,18 @@ export const IntroSequence = () => {
   // (before React unmounts the nodes) to avoid removeChild errors.
   const ctxRef = useRef<gsap.Context | null>(null);
   const [done, setDone] = useState(false);
+  const lenis = useLenis();
 
   useEffect(() => {
     // Lock scroll while intro plays
     document.body.style.overflow = 'hidden';
+    lenis?.stop();
 
     ctxRef.current = gsap.context(() => {
       const tl = gsap.timeline({
         onComplete: () => {
           document.body.style.overflow = '';
+          lenis?.start();
           // Revert GSAP while DOM nodes still exist, THEN remove from React tree
           if (ctxRef.current) {
             ctxRef.current.revert();
@@ -49,13 +53,14 @@ export const IntroSequence = () => {
 
     return () => {
       document.body.style.overflow = '';
+      lenis?.start();
       // Only revert if onComplete hasn't already done so
       if (ctxRef.current) {
         ctxRef.current.revert();
         ctxRef.current = null;
       }
     };
-  }, []);
+  }, [lenis]);
 
   if (done) return null;
 
@@ -66,21 +71,21 @@ export const IntroSequence = () => {
     >
       {/* Act 1 */}
       <div ref={act1Ref} className="absolute flex flex-col items-center text-center opacity-0 translate-y-[50px]">
-        <h2 className="font-chillax text-4xl md:text-7xl tracking-tight">
+        <h2 className="font-bricolage text-4xl md:text-7xl tracking-tight font-extrabold">
           Are you a <KeywordHighlight text="student?" />
         </h2>
       </div>
 
       {/* Act 2 */}
       <div ref={act2Ref} className="absolute flex flex-col items-center text-center opacity-0 translate-y-[50px]">
-        <h2 className="font-chillax text-4xl md:text-7xl tracking-tight max-w-3xl leading-tight">
+        <h2 className="font-bricolage text-4xl md:text-7xl tracking-tight max-w-3xl leading-tight font-extrabold">
           Struggling with <KeywordHighlight text="low funds?" />
         </h2>
       </div>
 
       {/* Act 3 */}
       <div ref={act3Ref} className="absolute flex flex-col items-center text-center opacity-0 scale-90">
-        <h2 className="font-chillax text-5xl md:text-7xl tracking-tight text-accent-indigo font-bold">
+        <h2 className="font-bricolage text-5xl md:text-7xl tracking-tight text-accent-purple font-extrabold">
           CreditBuddy Hai Na!!
         </h2>
       </div>

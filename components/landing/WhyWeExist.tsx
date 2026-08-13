@@ -9,25 +9,25 @@ const PROBLEMS = [
     emoji: '❌',
     title: "Banks don't see you.",
     desc: "No salary. No history. So they shut the door before you even start.",
-    color: '#2563EB',
+    color: '#7B5CFF',
   },
   {
     emoji: '💸',
     title: "Apps take advantage.",
     desc: "Hidden fees, traps, and fine print designed to cost you more.",
-    color: '#10B981',
+    color: '#FF5A3C',
   },
   {
     emoji: '🎓',
     title: "No one shows you how.",
     desc: "Real money skills? Missing from classrooms and real life.",
-    color: '#F5C518',
+    color: '#FFD23F',
   },
   {
     emoji: '⚠️',
     title: "The system isn't built for you.",
     desc: "Credit was never designed with students in mind.",
-    color: '#2563EB',
+    color: '#35C8FF',
   },
 ];
 
@@ -102,71 +102,60 @@ export const WhyWeExist = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full bg-ink text-bg-primary py-24 md:py-36 px-6 md:px-12 overflow-hidden"
+      className="relative w-[95%] md:w-[96%] mx-auto my-6 md:my-10 bg-bg-primary text-ink py-16 md:py-24 px-6 md:px-12 overflow-hidden rounded-[2rem] md:rounded-[3.5rem] brutal-border"
     >
-      {/* Background texture blobs */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full bg-accent-blue/8 blur-[120px]" />
-        <div className="absolute -bottom-32 -right-32 w-[400px] h-[400px] rounded-full bg-accent-green/8 blur-[120px]" />
-      </div>
 
       <div className="relative max-w-6xl mx-auto">
 
         {/* Eyebrow */}
         <div ref={eyebrowRef} className="mb-10 opacity-0">
-          <span className="inline-flex items-center gap-2 border border-bg-primary/15 rounded-full px-4 py-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent-yellow" />
-            <span className="font-satoshi text-xs font-semibold uppercase tracking-[0.2em] text-bg-primary/60">
-              Why We Exist
+          <span className="inline-flex items-center gap-2 brutal-pill bg-accent-lime px-4 py-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-ink" />
+            <span className="font-jetbrains text-xs font-normal text-ink">
+              // why we exist
             </span>
           </span>
         </div>
 
         {/* Headline */}
         <div ref={headlineRef} className="mb-14 overflow-hidden">
-          <div className="wwe-headline-line font-chillax font-bold text-bg-primary leading-[0.9] tracking-tight"
-               style={{ fontSize: 'clamp(2.8rem, 6vw, 90px)' }}>
+          <div className="wwe-headline-line font-bricolage font-extrabold text-ink leading-[0.95] tracking-tight"
+            style={{ fontSize: 'clamp(2.8rem, 6vw, 56px)', letterSpacing: '-1.4px' }}>
             The financial system
           </div>
-          <div className="wwe-headline-line font-chillax font-bold leading-[0.9] tracking-tight"
-               style={{ fontSize: 'clamp(2.8rem, 6vw, 90px)', color: '#F5C518' }}>
+          <div className="wwe-headline-line font-bricolage font-extrabold leading-[0.95] tracking-tight"
+            style={{ fontSize: 'clamp(2.8rem, 6vw, 56px)', letterSpacing: '-1.4px', color: '#FF5A3C' }}>
             ignores students.
           </div>
         </div>
 
         {/* Divider top */}
-        <div ref={dividerTopRef} className="w-full h-px bg-bg-primary/10 mb-12" />
+        <div ref={dividerTopRef} className="w-full h-[1.6px] bg-ink/15 mb-12" />
 
         {/* Problem cards grid */}
         <div ref={cardsRef} className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-12">
           {PROBLEMS.map((p, i) => (
             <div
               key={i}
-              className="wwe-card group relative rounded-2xl p-7 overflow-hidden
-                         bg-white/[0.03] border border-white/[0.07]
-                         hover:bg-white/[0.06] transition-colors duration-300"
-              style={{ borderLeft: `3px solid ${p.color}33` }}
+              className="wwe-card group relative rounded-3xl p-7 overflow-hidden
+                         bg-white brutal-border
+                         hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-300"
+              style={{ boxShadow: `4px 4px 0px ${p.color}` }}
             >
-              {/* Hover glow */}
-              <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-2xl"
-                style={{ background: `radial-gradient(circle at 30% 50%, ${p.color}15, transparent 70%)` }}
-              />
-
               <div className="relative z-10">
                 {/* Emoji + accent dot */}
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-3xl">{p.emoji}</span>
                   <span
                     className="w-1 h-6 rounded-full"
-                    style={{ backgroundColor: p.color, opacity: 0.6 }}
+                    style={{ backgroundColor: p.color }}
                   />
                 </div>
 
-                <h3 className="font-chillax font-bold text-xl text-bg-primary mb-2 leading-tight">
+                <h3 className="font-bricolage font-extrabold text-xl text-ink mb-2 leading-tight">
                   {p.title}
                 </h3>
-                <p className="font-satoshi text-sm text-bg-primary/50 leading-relaxed">
+                <p className="font-jakarta text-sm text-ink-muted leading-relaxed">
                   {p.desc}
                 </p>
               </div>
@@ -175,13 +164,13 @@ export const WhyWeExist = () => {
         </div>
 
         {/* Divider bottom */}
-        <div ref={dividerBotRef} className="w-full h-px bg-bg-primary/10 mb-16" />
+        <div ref={dividerBotRef} className="w-full h-[1.6px] bg-ink/15 mb-16" />
 
         {/* Closing pivot statement */}
         <div ref={closingRef}>
           <p
-            className="font-chillax font-bold leading-[1.05] tracking-tight"
-            style={{ fontSize: 'clamp(2rem, 4.5vw, 68px)' }}
+            className="font-bricolage font-extrabold leading-[1.05] tracking-tight"
+            style={{ fontSize: 'clamp(2rem, 4.5vw, 56px)', letterSpacing: '-1.4px' }}
           >
             {closingWords.map((word, i) => {
               const isAccent = ['built', 'never', 'did'].includes(word.replace(/[—.,]/g, '').toLowerCase());
@@ -189,7 +178,7 @@ export const WhyWeExist = () => {
                 <span
                   key={i}
                   className="wwe-closing-word inline-block mr-[0.25em] opacity-0"
-                  style={isAccent ? { color: '#10B981' } : { color: 'rgba(240,246,255,0.9)' }}
+                  style={isAccent ? { color: '#7B5CFF' } : { color: '#14100F' }}
                 >
                   {word}
                 </span>
