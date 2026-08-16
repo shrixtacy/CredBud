@@ -306,13 +306,16 @@ export const InteractiveFlow = () => {
   }, [isBooted]);
 
   return (
-    <div ref={outerContainerRef} className="relative w-full min-h-[400vh] bg-bg-primary">
+    <div ref={outerContainerRef} className="relative w-full min-h-[400vh] bg-ink">
       
       {/* Full-viewport scene display container */}
       <section 
         ref={innerContainerRef} 
-        className="h-screen w-full flex flex-col md:flex-row items-center justify-between relative overflow-hidden bg-bg-primary z-20 px-6 md:px-12 py-12"
+        className="h-screen w-full flex flex-col md:flex-row items-center justify-between relative overflow-hidden bg-ink z-20 px-6 md:px-12 py-12"
       >
+        {/* Glow behind phone and background */}
+        <div className="absolute w-[450px] h-[450px] top-1/2 right-[10%] -translate-y-1/2 bg-accent-purple/20 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute w-[350px] h-[350px] top-1/3 left-[5%] bg-accent-lime/10 rounded-full blur-[100px] pointer-events-none" />
 
         {/* Left Column: Flow Context Descriptions */}
         <div ref={leftColumnRef} className="w-full md:w-[45%] h-[70vh] relative flex flex-col justify-center z-40">
@@ -323,10 +326,10 @@ export const InteractiveFlow = () => {
               <span className="font-jetbrains text-xs font-normal text-ink brutal-pill bg-accent-lime px-4 py-1.5">
                 // financial operating system
               </span>
-              <h2 className="font-bricolage text-4xl md:text-6xl font-extrabold text-ink leading-tight">
+              <h2 className="font-bricolage text-4xl md:text-6xl font-extrabold text-white leading-tight">
                 Unlock the <br />CreditBuddy App.
               </h2>
-              <p className="font-jakarta text-base md:text-lg text-ink-muted leading-relaxed max-w-sm">
+              <p className="font-jakarta text-base md:text-lg text-white/70 leading-relaxed max-w-sm">
                 India&apos;s student-first financial ecosystem. Touch and hold the fingerprint scanner on the phone to boot the interface and unlock the scroll path.
               </p>
             </div>
@@ -345,10 +348,10 @@ export const InteractiveFlow = () => {
             <span className="font-jetbrains text-xs font-normal text-ink brutal-pill bg-accent-lime px-4 py-1.5">
               // borrow feature
             </span>
-            <h3 className="font-bricolage text-3xl md:text-4xl font-extrabold text-ink leading-none">
+            <h3 className="font-bricolage text-3xl md:text-4xl font-extrabold text-white leading-none">
               Need Instant Cash?
             </h3>
-            <p className="font-jakarta text-base md:text-lg text-ink-muted leading-relaxed max-w-sm">
+            <p className="font-jakarta text-base md:text-lg text-white/70 leading-relaxed max-w-sm">
               Tuition payments, exam registrations, or campus needs? Get approved in 60 seconds with 0% interest for the first 30 days. Linked securely to your student ID.
             </p>
           </div>
@@ -365,10 +368,10 @@ export const InteractiveFlow = () => {
             <span className="font-jetbrains text-xs font-normal text-ink brutal-pill bg-accent-gold px-4 py-1.5">
               // earn feature
             </span>
-            <h3 className="font-bricolage text-3xl md:text-4xl font-extrabold text-ink leading-none">
+            <h3 className="font-bricolage text-3xl md:text-4xl font-extrabold text-white leading-none">
               Grow Your Balance.
             </h3>
-            <p className="font-jakarta text-base md:text-lg text-ink-muted leading-relaxed max-w-sm">
+            <p className="font-jakarta text-base md:text-lg text-white/70 leading-relaxed max-w-sm">
               Monetize your spare time. Pick up verified campus gigs, complete student challenges, or leverage our powerful referral network. Get paid directly to your wallet.
             </p>
           </div>
@@ -382,13 +385,13 @@ export const InteractiveFlow = () => {
               <span className="relative text-accent-purple">LEARN</span>
             </div>
 
-            <span className="font-jetbrains text-xs font-normal text-ink brutal-pill bg-accent-purple/20 px-4 py-1.5">
+            <span className="font-jetbrains text-xs font-normal text-white brutal-pill bg-accent-purple px-4 py-1.5">
               // learn feature
             </span>
-            <h3 className="font-bricolage text-3xl md:text-4xl font-extrabold text-ink leading-none">
+            <h3 className="font-bricolage text-3xl md:text-4xl font-extrabold text-white leading-none">
               Real-World Skills.
             </h3>
-            <p className="font-jakarta text-base md:text-lg text-ink-muted leading-relaxed max-w-sm">
+            <p className="font-jakarta text-base md:text-lg text-white/70 leading-relaxed max-w-sm">
               No textbook fluff. Master budgeting, taxes, card building, and mutual funds via interactive, byte-sized modules. Secure your future before you graduate.
             </p>
           </div>
@@ -404,11 +407,15 @@ export const InteractiveFlow = () => {
               ref={phoneRef}
               className="w-full h-full iphone-frame flex flex-col"
               style={{
+                borderColor: '#C8FF3D',
+                borderWidth: '4px',
+                borderStyle: 'solid',
+                boxShadow: '10px 10px 0px #C8FF3D',
                 transform: 'rotateY(20deg) rotateX(10deg)',
                 transition: isHolding ? 'transform 0.25s ease-out' : 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)'
               }}
             >
-              <div className="iphone-island" />
+              <div className="iphone-island border border-[#C8FF3D]/40" />
               <div className="iphone-glare" />
 
               {/* Screen Inner view */}

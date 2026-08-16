@@ -282,6 +282,20 @@ body {
   border-radius: 2px;
 }
 
+/* ── Hero Float Animation ── */
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(-2deg);
+  }
+}
+
+.animate-float-gentle {
+  animation: float-gentle 4.5s ease-in-out infinite;
+}
+
 /* ── TV Bezel (now card-style) ── */
 .tv-bezel {
   background: #FFFFFF;
