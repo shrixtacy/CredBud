@@ -1,7 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { BookOpen, CheckCircle } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const LESSONS = [
   { id: 'budgeting', title: 'Budgeting basics', time: '4 min' },
@@ -19,11 +25,57 @@ const STEPS = [
 
 export const LearnAndBuildCredit = () => {
   const [selectedLesson, setSelectedLesson] = useState('investing');
+  const containerRef = useRef<HTMLDivElement>(null);
+  const progressBarRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      // Stagger entrance for lesson buttons
+      gsap.fromTo('.lesson-item',
+        { x: -40, opacity: 0 },
+        {
+          x: 0, opacity: 1, stagger: 0.08, duration: 0.7, ease: 'power3.out',
+          scrollTrigger: { trigger: containerRef.current, start: 'top 75%' }
+        }
+      );
+
+      // Featured card reveal
+      gsap.fromTo('.featured-lesson-card',
+        { scale: 0.95, opacity: 0, y: 30 },
+        {
+          scale: 1, opacity: 1, y: 0, duration: 0.8, ease: 'back.out(1.2)',
+          scrollTrigger: { trigger: containerRef.current, start: 'top 75%' }
+        }
+      );
+
+      // Progress bar fill animation
+      if (progressBarRef.current) {
+        gsap.fromTo(progressBarRef.current,
+          { width: '0%' },
+          {
+            width: '82%', duration: 1.2, ease: 'power3.out',
+            scrollTrigger: { trigger: progressBarRef.current, start: 'top 85%' }
+          }
+        );
+      }
+
+      // Steps entrance
+      gsap.fromTo('.step-row-item',
+        { x: 40, opacity: 0 },
+        {
+          x: 0, opacity: 1, stagger: 0.1, duration: 0.75, ease: 'power3.out',
+          scrollTrigger: { trigger: '.step-row-item', start: 'top 80%' }
+        }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const activeLessonObj = LESSONS.find(l => l.id === selectedLesson) || LESSONS[3];
 
   return (
-    <section className="py-20 md:py-28 px-6 md:px-12 bg-bg-primary w-full max-w-7xl mx-auto space-y-28">
+    <section ref={containerRef} className="py-20 md:py-28 px-6 md:px-12 bg-bg-primary w-full max-w-7xl mx-auto space-y-28">
       
       {/* 1. LEARN SECTION */}
       <div>
@@ -40,7 +92,7 @@ export const LearnAndBuildCredit = () => {
                 key={l.id}
                 onClick={() => setSelectedLesson(l.id)}
                 suppressHydrationWarning
-                className={`w-full p-4 rounded-2xl brutal-border text-left flex items-center justify-between transition-all cursor-pointer ${
+                className={`lesson-item w-full p-4 rounded-2xl brutal-border text-left flex items-center justify-between transition-all cursor-pointer ${
                   selectedLesson === l.id
                     ? 'bg-accent-cyan text-ink font-bold brutal-shadow-sm'
                     : 'bg-white text-ink hover:bg-bg-secondary'
@@ -58,7 +110,7 @@ export const LearnAndBuildCredit = () => {
           </div>
 
           {/* Right: Featured Lesson Card (Lime) */}
-          <div className="lg:col-span-7 bg-accent-lime brutal-card p-8 md:p-12 flex flex-col justify-between space-y-6">
+          <div className="featured-lesson-card lg:col-span-7 bg-accent-lime brutal-card p-8 md:p-12 flex flex-col justify-between space-y-6">
             <div className="flex justify-between items-start">
               <div className="w-12 h-12 rounded-2xl bg-white brutal-border flex items-center justify-center">
                 <BookOpen className="w-6 h-6 text-ink" />
@@ -115,7 +167,7 @@ export const LearnAndBuildCredit = () => {
 
               {/* Progress Bar */}
               <div className="mt-4 w-full h-3 bg-bg-secondary rounded-full overflow-hidden brutal-border">
-                <div className="h-full w-[82%] bg-gradient-to-r from-accent-coral via-accent-gold to-accent-lime" />
+                <div ref={progressBarRef} className="h-full bg-gradient-to-r from-accent-coral via-accent-gold to-accent-lime" />
               </div>
             </div>
 
@@ -139,7 +191,7 @@ export const LearnAndBuildCredit = () => {
           {/* Right: 4 Steps */}
           <div className="lg:col-span-6 space-y-6">
             {STEPS.map((step, i) => (
-              <div key={i} className="flex items-start gap-4 pb-6 border-b border-ink/10 last:border-0">
+              <div key={i} className="step-row-item flex items-start gap-4 pb-6 border-b border-ink/10 last:border-0">
                 <span className="font-jetbrains text-xs font-bold text-accent-purple bg-accent-purple/10 px-2.5 py-1 rounded-md brutal-border">
                   {step.num}
                 </span>

@@ -1,9 +1,15 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import { ArrowUpRight, ChevronDown, ChevronUp } from 'lucide-react';
 import { SplitText } from '@/components/landing/shared/SplitText';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const TEAM = [
   {
@@ -45,13 +51,29 @@ const TEAM = [
 
 export const AboutTeamSection = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap.fromTo('.team-card-item',
+        { y: 90, opacity: 0, scale: 0.85, rotate: -3 },
+        {
+          y: 0, opacity: 1, scale: 1, rotate: 0,
+          stagger: 0.12, duration: 0.85, ease: 'back.out(1.8)',
+          scrollTrigger: { trigger: containerRef.current, start: 'top 75%' }
+        }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const toggleExpand = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
 
   return (
-    <section className="py-20 md:py-28 px-6 md:px-12 bg-bg-primary w-full max-w-7xl mx-auto overflow-hidden">
+    <section ref={containerRef} className="py-20 md:py-28 px-6 md:px-12 bg-bg-primary w-full max-w-7xl mx-auto overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -76,13 +98,9 @@ export const AboutTeamSection = () => {
         {TEAM.map((member, i) => {
           const isExpanded = expandedIndex === i;
           return (
-            <motion.div
+            <div
               key={i}
-              initial={{ opacity: 0, y: 35 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.5, delay: i * 0.12 }}
-              className={`${member.color} brutal-card p-8 flex flex-col justify-between transition-all`}
+              className={`team-card-item ${member.color} brutal-card p-8 flex flex-col justify-between transition-all`}
               style={{ boxShadow: '6px 6px 0px #14100F' }}
             >
               <div className="space-y-4">
@@ -128,7 +146,7 @@ export const AboutTeamSection = () => {
                   )}
                 </button>
               </div>
-            </motion.div>
+            </div>
           );
         })}
       </div>

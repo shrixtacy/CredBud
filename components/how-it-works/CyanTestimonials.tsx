@@ -1,6 +1,12 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const REVIEWS = [
   {
@@ -34,8 +40,33 @@ const REVIEWS = [
 ];
 
 export const CyanTestimonials = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap.fromTo('.review-card-item',
+        { y: 80, opacity: 0, scale: 0.85, rotate: 3 },
+        {
+          y: 0, opacity: 1, scale: 1, rotate: 0,
+          stagger: 0.12, duration: 0.85, ease: 'back.out(1.8)',
+          scrollTrigger: { trigger: containerRef.current, start: 'top 75%' }
+        }
+      );
+
+      gsap.fromTo('.cta-big-card',
+        { y: 80, opacity: 0, scale: 0.92 },
+        {
+          y: 0, opacity: 1, scale: 1, duration: 0.9, ease: 'back.out(1.5)',
+          scrollTrigger: { trigger: '.cta-big-card', start: 'top 80%' }
+        }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="w-full">
+    <section ref={containerRef} className="w-full">
       {/* 1. Cyan Testimonials Strip (Figma Screenshot 4 Top) */}
       <div className="bg-accent-cyan py-20 md:py-24 px-6 md:px-12 w-full text-ink">
         <div className="max-w-7xl mx-auto">
@@ -54,7 +85,7 @@ export const CyanTestimonials = () => {
             {REVIEWS.map((r, i) => (
               <div
                 key={i}
-                className={`${r.color} brutal-card p-6 flex flex-col justify-between min-h-[260px] hover:translate-y-[-4px] transition-transform duration-300`}
+                className={`review-card-item ${r.color} brutal-card p-6 flex flex-col justify-between min-h-[260px] hover:translate-y-[-4px] transition-transform duration-300`}
                 style={{ boxShadow: '4px 4px 0px #14100F' }}
               >
                 <p className="font-bricolage font-bold text-sm md:text-base leading-snug">
@@ -78,7 +109,7 @@ export const CyanTestimonials = () => {
 
       {/* 2. Big Lime Final CTA Card (Figma Screenshot 4 Bottom) */}
       <div className="py-16 md:py-24 px-6 md:px-12 bg-bg-primary w-full">
-        <div className="max-w-6xl mx-auto bg-accent-lime brutal-card p-10 md:p-20 text-center relative overflow-hidden" style={{ boxShadow: '8px 8px 0px #14100F' }}>
+        <div className="cta-big-card max-w-6xl mx-auto bg-accent-lime brutal-card p-10 md:p-20 text-center relative overflow-hidden" style={{ boxShadow: '8px 8px 0px #14100F' }}>
           
           {/* Corner Circles */}
           <div className="absolute -top-12 -left-12 w-32 h-32 rounded-full bg-accent-coral brutal-border pointer-events-none" />

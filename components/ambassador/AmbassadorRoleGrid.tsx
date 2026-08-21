@@ -1,8 +1,14 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Megaphone, Users, MessageSquareCode, Award } from 'lucide-react';
 import { SplitText } from '@/components/landing/shared/SplitText';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const ROLES = [
   {
@@ -48,8 +54,24 @@ const ROLES = [
 ];
 
 export const AmbassadorRoleGrid = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap.fromTo('.ambassador-sticky-card',
+        { y: 80, opacity: 0, scale: 0.93 },
+        {
+          y: 0, opacity: 1, scale: 1, stagger: 0.15, duration: 0.85, ease: 'back.out(1.2)',
+          scrollTrigger: { trigger: containerRef.current, start: 'top 70%' }
+        }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-20 md:py-28 px-6 md:px-12 bg-bg-primary w-full relative">
+    <section ref={containerRef} className="py-20 md:py-28 px-6 md:px-12 bg-bg-primary w-full relative">
       {/* Background SVG Paper Elements */}
       <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0 opacity-25 overflow-hidden">
         <img
@@ -82,7 +104,7 @@ export const AmbassadorRoleGrid = () => {
           return (
             <div
               key={i}
-              className={`sticky ${role.topOffset} ${role.zIndex} w-full`}
+              className={`ambassador-sticky-card sticky ${role.topOffset} ${role.zIndex} w-full`}
             >
               <div
                 className={`${role.color} brutal-card p-8 md:p-12 text-ink shadow-[8px_8px_0px_#14100F] border-[2px] border-ink rounded-3xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6 transition-transform hover:-translate-y-1`}

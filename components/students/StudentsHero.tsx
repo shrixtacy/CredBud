@@ -1,11 +1,33 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { SplitText } from '@/components/landing/shared/SplitText';
+import gsap from 'gsap';
 
 export const StudentsHero = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap.fromTo('.left-hero-girl',
+        { x: -120, opacity: 0, scale: 0.8 },
+        { x: 0, opacity: 1, scale: 1, duration: 1, ease: 'back.out(1.6)', delay: 0.3 }
+      );
+      gsap.fromTo('.right-hero-boy',
+        { x: 120, opacity: 0, scale: 0.8 },
+        { x: 0, opacity: 1, scale: 1, duration: 1, ease: 'back.out(1.6)', delay: 0.4 }
+      );
+      gsap.fromTo('.students-hero-cta',
+        { y: 50, opacity: 0, scale: 0.85 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.85, ease: 'back.out(2)', delay: 0.6 }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="relative pt-20 pb-44 sm:pb-48 lg:pt-32 lg:pb-20 px-6 md:px-12 bg-bg-primary text-ink border-b-[1.6px] border-ink overflow-hidden">
+    <section ref={containerRef} className="relative pt-20 pb-44 sm:pb-48 lg:pt-32 lg:pb-20 px-6 md:px-12 bg-bg-primary text-ink border-b-[1.6px] border-ink overflow-hidden">
       {/* Soft background ambient glow behind left character */}
       <div className="absolute bottom-0 left-0 lg:top-1/2 lg:-translate-y-1/2 w-64 h-64 lg:w-80 lg:h-80 bg-accent-lime/20 rounded-full blur-[80px] pointer-events-none" />
 
@@ -22,10 +44,10 @@ export const StudentsHero = () => {
         </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto relative flex flex-col items-center text-center">
+      <div className="max-w-7xl mx-auto relative flex flex-col items-center text-center pb-24 sm:pb-28 lg:pb-0">
         
         {/* Left side character image - Girl */}
-        <div className="absolute bottom-[-165px] sm:bottom-[-195px] left-[-22px] sm:left-[-10px] lg:top-1/2 lg:bottom-auto lg:-translate-y-[54%] lg:left-[-4rem] xl:left-[-7.5rem] 2xl:left-[-11rem] w-[145px] sm:w-[190px] md:w-[240px] lg:w-[340px] xl:w-[460px] 2xl:w-[520px] pointer-events-none z-20">
+        <div className="left-hero-girl absolute bottom-[-165px] sm:bottom-[-195px] left-[-22px] sm:left-[-10px] lg:top-1/2 lg:bottom-auto lg:-translate-y-[54%] lg:left-[-4rem] xl:left-[-7.5rem] 2xl:left-[-11rem] w-[145px] sm:w-[190px] md:w-[240px] lg:w-[340px] xl:w-[460px] 2xl:w-[520px] pointer-events-none z-20">
           <img
             src="/student-hero-character.png"
             alt="CreditBuddy Student Character Girl"
@@ -34,12 +56,12 @@ export const StudentsHero = () => {
         </div>
 
         {/* Right side character image - Boy */}
-        <div className="absolute bottom-[-165px] sm:bottom-[-195px] right-[-22px] sm:right-[-10px] lg:top-1/2 lg:bottom-auto lg:-translate-y-[28%] lg:right-[-4rem] xl:right-[-7.5rem] 2xl:right-[-11rem] w-[145px] sm:w-[190px] md:w-[240px] lg:w-[340px] xl:w-[460px] 2xl:w-[520px] pointer-events-none z-20 scale-x-[-1]">
+        <div className="right-hero-boy absolute bottom-[-165px] sm:bottom-[-195px] right-[-22px] sm:right-[-10px] lg:top-1/2 lg:bottom-auto lg:-translate-y-[28%] lg:right-[-4rem] xl:right-[-7.5rem] 2xl:right-[-11rem] w-[145px] sm:w-[190px] md:w-[240px] lg:w-[340px] xl:w-[460px] 2xl:w-[520px] pointer-events-none z-20">
           <img
             src="/student-hero-boy.png"
             alt="CreditBuddy Student Character Boy"
             className="w-full h-auto object-contain drop-shadow-2xl animate-float-gentle"
-            style={{ animationDelay: '1.5s' }}
+            style={{ transform: 'rotate(180deg)', animationDelay: '1.5s' }}
           />
         </div>
 
@@ -69,7 +91,7 @@ export const StudentsHero = () => {
           />
         </p>
 
-        <div className="flex flex-wrap items-center justify-center gap-4 z-10">
+        <div className="students-hero-cta flex flex-wrap items-center justify-center gap-4 z-10">
           <button className="px-8 py-4 bg-ink text-bg-primary font-bricolage font-bold text-base brutal-pill brutal-shadow-purple hover:scale-105 transition-transform cursor-pointer">
             Get Started Free ↗
           </button>

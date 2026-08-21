@@ -61,13 +61,26 @@ export const NavSidebar = () => {
 
   return (
     <>
+      {/* Fixed Top Left Icon Logo Header */}
+      <a
+        href="/"
+        aria-label="CreditBuddy Home"
+        className="fixed top-5 left-6 z-[10001] w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-white brutal-border brutal-shadow-sm flex items-center justify-center hover:scale-105 active:scale-95 transition-transform duration-200 cursor-pointer select-none"
+      >
+        <img 
+          src="/images/creditbuddy-logo.png" 
+          alt="CreditBuddy Logo" 
+          className="w-8 h-8 sm:w-9 sm:h-9 object-contain" 
+        />
+      </a>
+
       {/* Trigger button */}
       <button
         id="nav-menu-trigger"
         onClick={isOpen ? close : open}
         aria-label="Toggle navigation"
         suppressHydrationWarning
-        className="fixed top-6 right-6 z-[10001] w-11 h-11 rounded-full bg-white brutal-border brutal-shadow-sm flex flex-col items-center justify-center gap-[5px] hover:scale-105 active:scale-95 transition-transform duration-200 cursor-pointer"
+        className="fixed top-5 right-6 z-[10001] w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-white brutal-border brutal-shadow-sm flex flex-col items-center justify-center gap-[5px] hover:scale-105 active:scale-95 transition-transform duration-200 cursor-pointer"
       >
         <span ref={line1} className="block w-5 h-[2px] bg-ink rounded-full origin-center" />
         <span ref={line2} className="block w-5 h-[2px] bg-ink rounded-full origin-center" />
@@ -107,13 +120,9 @@ export const NavSidebar = () => {
 
           {/* Header */}
           <div className="flex items-center justify-between px-8 pt-8 pb-6">
-            <div>
-              <p className="font-jetbrains text-[10px] font-bold uppercase tracking-[0.25em] text-ink-muted mb-1">
-                // Navigation
-              </p>
-              <span className="font-bricolage text-xl font-extrabold text-ink tracking-tight">
-                Credit<span className="text-accent-purple">Buddy</span>
-              </span>
+            <div className="flex items-center gap-3">
+              <img src="/images/creditbuddy-logo.png" alt="CreditBuddy Logo" className="h-8 w-auto object-contain" />
+              <img src="/images/creditbuddy-text-logo.png" alt="CreditBuddy" className="h-6 w-auto object-contain" />
             </div>
             <button
               onClick={close}

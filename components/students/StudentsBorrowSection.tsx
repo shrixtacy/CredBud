@@ -1,10 +1,32 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export const StudentsBorrowSection = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap.fromTo('.borrow-card-item',
+        { y: 50, opacity: 0, scale: 0.94 },
+        {
+          y: 0, opacity: 1, scale: 1, stagger: 0.12, duration: 0.8, ease: 'back.out(1.3)',
+          scrollTrigger: { trigger: containerRef.current, start: 'top 75%' }
+        }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="relative w-full bg-bg-primary py-20 md:py-24 overflow-hidden">
+    <section ref={containerRef} className="relative w-full bg-bg-primary py-20 md:py-24 overflow-hidden">
       {/* Top Right Extreme Corner - Lemon Green Pair (Bigger, only 1/4th visible) */}
       <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-72 h-72 md:w-[440px] md:h-[440px] pointer-events-none z-0 select-none opacity-90">
         <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
@@ -34,7 +56,7 @@ export const StudentsBorrowSection = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-accent-lime brutal-card p-8 flex flex-col justify-between min-h-[260px]">
+          <div className="borrow-card-item bg-accent-lime brutal-card p-8 flex flex-col justify-between min-h-[260px]">
             <span className="font-jetbrains text-xs font-bold text-ink">01 // INSTANT</span>
             <div>
               <h3 className="font-bricolage text-3xl font-extrabold text-ink mb-2">₹500 to ₹50,000</h3>
@@ -42,7 +64,7 @@ export const StudentsBorrowSection = () => {
             </div>
           </div>
 
-          <div className="bg-white brutal-card p-8 flex flex-col justify-between min-h-[260px]">
+          <div className="borrow-card-item bg-white brutal-card p-8 flex flex-col justify-between min-h-[260px]">
             <span className="font-jetbrains text-xs font-bold text-accent-purple">02 // TRANSPARENT</span>
             <div>
               <h3 className="font-bricolage text-3xl font-extrabold text-ink mb-2">0% for 30 Days</h3>
@@ -50,7 +72,7 @@ export const StudentsBorrowSection = () => {
             </div>
           </div>
 
-          <div className="bg-accent-gold brutal-card p-8 flex flex-col justify-between min-h-[260px]">
+          <div className="borrow-card-item bg-accent-gold brutal-card p-8 flex flex-col justify-between min-h-[260px]">
             <span className="font-jetbrains text-xs font-bold text-ink">03 // EASY KYC</span>
             <div>
               <h3 className="font-bricolage text-3xl font-extrabold text-ink mb-2">College ID Only</h3>

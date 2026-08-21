@@ -1,7 +1,13 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { UserCheck, Megaphone, CheckSquare, ClipboardList, Briefcase, Gift, GraduationCap, Heart } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const GIGS = [
   {
@@ -63,8 +69,32 @@ const GIGS = [
 ];
 
 export const CampusGigsBento = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap.fromTo('.gig-card-item',
+        { y: 60, opacity: 0, scale: 0.92 },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          stagger: 0.08,
+          duration: 0.85,
+          ease: 'back.out(1.4)',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 75%',
+          }
+        }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-20 md:py-28 px-6 md:px-12 bg-ink text-bg-primary w-full">
+    <section ref={containerRef} className="py-20 md:py-28 px-6 md:px-12 bg-ink text-bg-primary w-full">
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}
@@ -84,7 +114,7 @@ export const CampusGigsBento = () => {
           {GIGS.map((gig, i) => (
             <div
               key={i}
-              className={`${gig.colSpan} ${gig.color} brutal-card p-6 min-h-[140px] flex flex-col justify-between hover:translate-y-[-4px] transition-transform duration-300`}
+              className={`gig-card-item ${gig.colSpan} ${gig.color} brutal-card p-6 min-h-[140px] flex flex-col justify-between hover:translate-y-[-4px] transition-transform duration-300`}
               style={{ boxShadow: '4px 4px 0px #FBF7EF' }}
             >
               <div className="mb-4">{gig.icon}</div>

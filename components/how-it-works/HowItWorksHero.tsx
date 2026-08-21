@@ -1,23 +1,41 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { SplitText } from '@/components/landing/shared/SplitText';
+import gsap from 'gsap';
 
 export const HowItWorksHero = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap.fromTo('.hiw-hero-badge',
+        { y: -40, opacity: 0, scale: 0.8 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(1.8)', delay: 0.2 }
+      );
+      gsap.fromTo('.hiw-hero-cta',
+        { y: 50, opacity: 0, scale: 0.85 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.85, ease: 'back.out(2)', delay: 0.6 }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="relative min-h-screen pt-32 pb-24 px-6 md:px-12 bg-bg-primary text-ink border-b-[1.6px] border-ink overflow-hidden flex flex-col justify-center">
+    <section ref={containerRef} className="relative min-h-screen pt-32 pb-24 px-6 md:px-12 bg-bg-primary text-ink border-b-[1.6px] border-ink overflow-hidden flex flex-col justify-center">
       {/* Background Campus Scene Image (100% Full Visibility) */}
       <div className="absolute inset-0 w-full h-full z-0 select-none pointer-events-none">
         <img
           src="/how-it-works-campus-bg-v2.png"
           alt="Campus life background"
-          className="w-full h-full object-cover object-center opacity-100"
+          className="w-full h-full object-cover object-[25%_center] md:object-center opacity-100"
         />
       </div>
 
       <div className="max-w-7xl mx-auto relative flex flex-col items-center text-center z-10 -mt-12 md:-mt-20">
         
-        <span className="font-jetbrains text-xs font-normal brutal-pill bg-accent-lime px-4 py-1.5 mb-6 inline-block">
+        <span className="hiw-hero-badge font-jetbrains text-xs font-normal brutal-pill bg-accent-lime px-4 py-1.5 mb-6 inline-block">
           // how it works
         </span>
         
@@ -43,7 +61,7 @@ export const HowItWorksHero = () => {
           />
         </p>
 
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        <div className="hiw-hero-cta flex flex-wrap items-center justify-center gap-4">
           <button suppressHydrationWarning className="px-8 py-4 bg-ink text-bg-primary font-bricolage font-bold text-base brutal-pill brutal-shadow-purple hover:scale-105 transition-transform cursor-pointer">
             Explore Ecosystem ↓
           </button>

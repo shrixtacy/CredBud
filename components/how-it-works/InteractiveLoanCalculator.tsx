@@ -1,6 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const REASONS = [
   { id: 'semester', label: 'Semester fees', amount: 25000, term: 6 },
@@ -14,6 +20,33 @@ export const InteractiveLoanCalculator = () => {
   const [amount, setAmount] = useState(25000);
   const [term, setTerm] = useState(6);
 
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      // Bold Superpower Cards Entrance
+      gsap.fromTo('.superpower-card',
+        { y: 100, opacity: 0, scale: 0.82, rotate: -4 },
+        {
+          y: 0, opacity: 1, scale: 1, rotate: 0,
+          stagger: 0.12, duration: 0.85, ease: 'back.out(1.8)',
+          scrollTrigger: { trigger: containerRef.current, start: 'top 75%' }
+        }
+      );
+
+      // Calculator Widget Reveal
+      gsap.fromTo('.calc-widget-container',
+        { y: 90, opacity: 0, scale: 0.9 },
+        {
+          y: 0, opacity: 1, scale: 1, duration: 0.9, ease: 'back.out(1.5)',
+          scrollTrigger: { trigger: '.calc-widget-container', start: 'top 80%' }
+        }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   const selectReason = (r: typeof REASONS[0]) => {
     setSelectedReason(r.id);
     setAmount(r.amount);
@@ -25,7 +58,7 @@ export const InteractiveLoanCalculator = () => {
   const monthlyRepayment = Math.round(totalRepayable / term);
 
   return (
-    <section className="py-16 md:py-24 px-6 md:px-12 bg-bg-primary w-full max-w-7xl mx-auto">
+    <section ref={containerRef} className="py-16 md:py-24 px-6 md:px-12 bg-bg-primary w-full max-w-7xl mx-auto">
       
       {/* 1. Superpowers 4-Card Grid */}
       <div className="mb-20">
@@ -43,7 +76,7 @@ export const InteractiveLoanCalculator = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Card 1: Borrow (Lime) */}
-          <div className="bg-accent-lime brutal-card p-6 flex flex-col justify-between min-h-[300px]">
+          <div className="superpower-card bg-accent-lime brutal-card p-6 flex flex-col justify-between min-h-[300px]">
             <div>
               <div className="flex justify-between items-start mb-6">
                 <div className="w-12 h-12 rounded-2xl bg-white brutal-border flex items-center justify-center">
@@ -67,7 +100,7 @@ export const InteractiveLoanCalculator = () => {
           </div>
 
           {/* Card 2: Earn (White) */}
-          <div className="bg-white brutal-card p-6 flex flex-col justify-between min-h-[300px]">
+          <div className="superpower-card bg-white brutal-card p-6 flex flex-col justify-between min-h-[300px]">
             <div>
               <div className="flex justify-between items-start mb-6">
                 <div className="w-12 h-12 rounded-2xl bg-white brutal-border flex items-center justify-center">
@@ -91,7 +124,7 @@ export const InteractiveLoanCalculator = () => {
           </div>
 
           {/* Card 3: Learn (White) */}
-          <div className="bg-white brutal-card p-6 flex flex-col justify-between min-h-[300px]">
+          <div className="superpower-card bg-white brutal-card p-6 flex flex-col justify-between min-h-[300px]">
             <div>
               <div className="flex justify-between items-start mb-6">
                 <div className="w-12 h-12 rounded-2xl bg-white brutal-border flex items-center justify-center">
@@ -115,7 +148,7 @@ export const InteractiveLoanCalculator = () => {
           </div>
 
           {/* Card 4: Build Credit (White) */}
-          <div className="bg-white brutal-card p-6 flex flex-col justify-between min-h-[300px]">
+          <div className="superpower-card bg-white brutal-card p-6 flex flex-col justify-between min-h-[300px]">
             <div>
               <div className="flex justify-between items-start mb-6">
                 <div className="w-12 h-12 rounded-2xl bg-white brutal-border flex items-center justify-center">
@@ -141,7 +174,7 @@ export const InteractiveLoanCalculator = () => {
       </div>
 
       {/* 2. Interactive Calculator Dual-Panel Widget (Figma Screenshot 1) */}
-      <div className="w-full grid grid-cols-1 lg:grid-cols-12 brutal-card overflow-hidden" style={{ boxShadow: '8px 8px 0px #14100F' }}>
+      <div className="calc-widget-container w-full grid grid-cols-1 lg:grid-cols-12 brutal-card overflow-hidden" style={{ boxShadow: '8px 8px 0px #14100F' }}>
         
         {/* Left Panel: Purple #7B5CFF */}
         <div className="lg:col-span-6 bg-accent-purple p-8 md:p-12 text-white flex flex-col justify-between space-y-8">
