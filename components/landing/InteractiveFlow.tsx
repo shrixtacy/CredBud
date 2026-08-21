@@ -213,15 +213,15 @@ export const InteractiveFlow = () => {
         // --- PHASE 2: MORPH & FLOW TO EARN ---
         // Move phone from right to left
         tl.to(phoneContainerRef.current, {
-          x: '-51vw',
+          x: '-46vw',
           duration: 2,
           ease: 'power2.inOut',
         }, 2);
 
         // Move Earn description block to the right and fade in
         tl.fromTo('.desc-earn',
-          { opacity: 0, x: '51vw', y: '8vh' },
-          { opacity: 1, x: '51vw', y: '0vh', pointerEvents: 'auto', duration: 1 },
+          { opacity: 0, x: '46vw', y: '8vh' },
+          { opacity: 1, x: '46vw', y: '0vh', pointerEvents: 'auto', duration: 1 },
           2.5
         );
 
@@ -318,80 +318,80 @@ export const InteractiveFlow = () => {
         <div className="absolute w-[350px] h-[350px] top-1/3 left-[5%] bg-accent-lime/10 rounded-full blur-[100px] pointer-events-none" />
 
         {/* Left Column: Flow Context Descriptions */}
-        <div ref={leftColumnRef} className="w-full md:w-[45%] h-[70vh] relative flex flex-col justify-center z-40">
+        <div ref={leftColumnRef} className="w-full md:w-[45%] h-[55vh] md:h-[70vh] relative flex flex-col justify-start md:justify-center items-start pt-16 md:pt-0 z-40">
           
           {/* Pre-Boot context display */}
           {!isBooted && (
-            <div className="flex flex-col items-start space-y-5 animate-fade-in">
-              <span className="font-jetbrains text-xs font-normal text-ink brutal-pill bg-accent-lime px-4 py-1.5">
+            <div className="flex flex-col items-start space-y-3 sm:space-y-5 animate-fade-in pr-10 md:pr-0">
+              <span className="font-jetbrains text-[10px] sm:text-xs font-normal text-ink brutal-pill bg-accent-lime px-3 sm:px-4 py-1 sm:py-1.5">
                 // financial operating system
               </span>
-              <h2 className="font-bricolage text-4xl md:text-6xl font-extrabold text-white leading-tight">
+              <h2 className="font-bricolage text-3xl sm:text-4xl md:text-6xl font-extrabold text-white leading-tight">
                 Unlock the <br />CreditBuddy App.
               </h2>
-              <p className="font-jakarta text-base md:text-lg text-white/70 leading-relaxed max-w-sm">
+              <p className="font-jakarta text-xs sm:text-base md:text-lg text-white/70 leading-relaxed max-w-xs sm:max-w-sm">
                 India&apos;s student-first financial ecosystem. Touch and hold the fingerprint scanner on the phone to boot the interface and unlock the scroll path.
               </p>
             </div>
           )}
 
           {/* Dynamic Scroll descriptions (Title text exactly over paragraph text) */}
-          <div className="desc-borrow absolute inset-0 flex flex-col items-start justify-center space-y-4 opacity-0 pointer-events-none">
+          <div className="desc-borrow absolute inset-0 flex flex-col items-start justify-start md:justify-center pt-16 md:pt-0 space-y-2.5 sm:space-y-4 opacity-0 pointer-events-none pr-8 md:pr-0">
             {/* Title directly over paragraph text */}
-            <div className="word-borrow relative flex items-center justify-start font-bricolage font-extrabold text-5xl md:text-[4.5rem] lg:text-[5.5rem] uppercase select-none leading-none mb-1">
+            <div className="word-borrow relative flex items-center justify-start font-bricolage font-extrabold text-3xl sm:text-5xl md:text-[4.5rem] lg:text-[5.5rem] uppercase select-none leading-none mb-1">
               <span className="trail-ghost trail-ghost-borrow-3 absolute text-accent-lime/10">BORROW</span>
               <span className="trail-ghost trail-ghost-borrow-2 absolute text-accent-lime/20">BORROW</span>
               <span className="trail-ghost trail-ghost-borrow-1 absolute text-accent-lime/30">BORROW</span>
               <span className="relative text-accent-lime" style={{ textShadow: 'none' }}>BORROW</span>
             </div>
 
-            <span className="font-jetbrains text-xs font-normal text-ink brutal-pill bg-accent-lime px-4 py-1.5">
+            <span className="font-jetbrains text-[10px] sm:text-xs font-normal text-ink brutal-pill bg-accent-lime px-3 sm:px-4 py-1 sm:py-1.5">
               // borrow feature
             </span>
-            <h3 className="font-bricolage text-3xl md:text-4xl font-extrabold text-white leading-none">
+            <h3 className="font-bricolage text-2xl sm:text-3xl md:text-4xl font-extrabold text-white leading-none">
               Need Instant Cash?
             </h3>
-            <p className="font-jakarta text-base md:text-lg text-white/70 leading-relaxed max-w-sm">
+            <p className="font-jakarta text-xs sm:text-base md:text-lg text-white/70 leading-relaxed max-w-xs sm:max-w-sm">
               Tuition payments, exam registrations, or campus needs? Get approved in 60 seconds with 0% interest for the first 30 days. Linked securely to your student ID.
             </p>
           </div>
 
-          <div className="desc-earn absolute inset-0 flex flex-col items-start justify-center space-y-4 opacity-0 pointer-events-none">
+          <div className="desc-earn absolute inset-0 flex flex-col items-start justify-start md:justify-center pt-16 md:pt-0 space-y-2.5 sm:space-y-4 opacity-0 pointer-events-none pr-8 md:pr-0">
             {/* Title directly over paragraph text */}
-            <div className="word-earn relative flex items-center justify-start font-bricolage font-extrabold text-5xl md:text-[4.5rem] lg:text-[5.5rem] uppercase select-none leading-none mb-1">
+            <div className="word-earn relative flex items-center justify-start font-bricolage font-extrabold text-3xl sm:text-5xl md:text-[4.5rem] lg:text-[5.5rem] uppercase select-none leading-none mb-1">
               <span className="trail-ghost trail-ghost-earn-3 absolute text-accent-gold/10">EARN</span>
               <span className="trail-ghost trail-ghost-earn-2 absolute text-accent-gold/20">EARN</span>
               <span className="trail-ghost trail-ghost-earn-1 absolute text-accent-gold/30">EARN</span>
               <span className="relative text-accent-gold">EARN</span>
             </div>
 
-            <span className="font-jetbrains text-xs font-normal text-ink brutal-pill bg-accent-gold px-4 py-1.5">
+            <span className="font-jetbrains text-[10px] sm:text-xs font-normal text-ink brutal-pill bg-accent-gold px-3 sm:px-4 py-1 sm:py-1.5">
               // earn feature
             </span>
-            <h3 className="font-bricolage text-3xl md:text-4xl font-extrabold text-white leading-none">
+            <h3 className="font-bricolage text-2xl sm:text-3xl md:text-4xl font-extrabold text-white leading-none">
               Grow Your Balance.
             </h3>
-            <p className="font-jakarta text-base md:text-lg text-white/70 leading-relaxed max-w-sm">
+            <p className="font-jakarta text-xs sm:text-base md:text-lg text-white/70 leading-relaxed max-w-xs sm:max-w-sm">
               Monetize your spare time. Pick up verified campus gigs, complete student challenges, or leverage our powerful referral network. Get paid directly to your wallet.
             </p>
           </div>
 
-          <div className="desc-learn absolute inset-0 flex flex-col items-start justify-center space-y-4 opacity-0 pointer-events-none">
+          <div className="desc-learn absolute inset-0 flex flex-col items-start justify-start md:justify-center pt-16 md:pt-0 space-y-2.5 sm:space-y-4 opacity-0 pointer-events-none pr-8 md:pr-0">
             {/* Title directly over paragraph text */}
-            <div className="word-learn relative flex items-center justify-start font-bricolage font-extrabold text-5xl md:text-[4.5rem] lg:text-[5.5rem] uppercase select-none leading-none mb-1">
+            <div className="word-learn relative flex items-center justify-start font-bricolage font-extrabold text-3xl sm:text-5xl md:text-[4.5rem] lg:text-[5.5rem] uppercase select-none leading-none mb-1">
               <span className="trail-ghost trail-ghost-learn-3 absolute text-accent-purple/10">LEARN</span>
               <span className="trail-ghost trail-ghost-learn-2 absolute text-accent-purple/20">LEARN</span>
-              <span className="trail-ghost trail-ghost-learn-1 absolute text-accent-purple/30">LEARN</span>
+              <span className="trail-ghost trail-ghost-learn-3 absolute text-accent-purple/30">LEARN</span>
               <span className="relative text-accent-purple">LEARN</span>
             </div>
 
-            <span className="font-jetbrains text-xs font-normal text-white brutal-pill bg-accent-purple px-4 py-1.5">
+            <span className="font-jetbrains text-[10px] sm:text-xs font-normal text-white brutal-pill bg-accent-purple px-3 sm:px-4 py-1 sm:py-1.5">
               // learn feature
             </span>
-            <h3 className="font-bricolage text-3xl md:text-4xl font-extrabold text-white leading-none">
+            <h3 className="font-bricolage text-2xl sm:text-3xl md:text-4xl font-extrabold text-white leading-none">
               Real-World Skills.
             </h3>
-            <p className="font-jakarta text-base md:text-lg text-white/70 leading-relaxed max-w-sm">
+            <p className="font-jakarta text-xs sm:text-base md:text-lg text-white/70 leading-relaxed max-w-xs sm:max-w-sm">
               No textbook fluff. Master budgeting, taxes, card building, and mutual funds via interactive, byte-sized modules. Secure your future before you graduate.
             </p>
           </div>
@@ -399,10 +399,10 @@ export const InteractiveFlow = () => {
         </div>
 
         {/* Right Column: 3D Phone Container */}
-        <div className="w-full md:w-[50%] h-[75vh] flex items-center justify-center relative z-20">
+        <div className="w-full md:w-[50%] h-auto md:h-[75vh] flex items-end justify-end md:items-center md:justify-center absolute bottom-4 right-14 sm:bottom-6 sm:right-24 md:relative md:bottom-auto md:right-auto z-20 pointer-events-auto">
           
           {/* 3D iPhone Model */}
-          <div ref={phoneContainerRef} className="iphone-container w-[280px] h-[580px] md:w-[300px] md:h-[610px]">
+          <div ref={phoneContainerRef} className="iphone-container w-[280px] h-[580px] md:w-[300px] md:h-[610px] scale-[0.60] xs:scale-[0.66] sm:scale-80 md:scale-100 origin-center md:-translate-x-[6vw]">
             <div 
               ref={phoneRef}
               className="w-full h-full iphone-frame flex flex-col"

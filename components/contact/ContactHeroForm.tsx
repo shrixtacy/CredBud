@@ -1,9 +1,31 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export const ContactHeroForm = () => {
   const [submitted, setSubmitted] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap.fromTo('.contact-info-col',
+        { x: -50, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.85, ease: 'power3.out' }
+      );
+      gsap.fromTo('.contact-form-card',
+        { scale: 0.94, opacity: 0, y: 40 },
+        { scale: 1, opacity: 1, y: 0, duration: 0.85, ease: 'back.out(1.2)', delay: 0.2 }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -11,11 +33,11 @@ export const ContactHeroForm = () => {
   };
 
   return (
-    <section className="relative pt-32 pb-20 px-6 md:px-12 bg-bg-primary text-ink border-b-[1.6px] border-ink">
+    <section ref={containerRef} className="relative pt-32 pb-20 px-6 md:px-12 bg-bg-primary text-ink border-b-[1.6px] border-ink">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         {/* Left Column: Heading */}
-        <div className="lg:col-span-5 space-y-6">
+        <div className="contact-info-col lg:col-span-5 space-y-6">
           <span className="font-jetbrains text-xs font-normal brutal-pill bg-accent-lime px-4 py-1.5 inline-block">
             // get in touch
           </span>
@@ -29,14 +51,19 @@ export const ContactHeroForm = () => {
           </p>
 
           <div className="space-y-3 font-jetbrains text-xs text-ink pt-4">
-            <p>📧 support@creditbuddy.in</p>
-            <p>📱 +91 800-CRED-BUD</p>
-            <p>📍 Koramangala 5th Block, Bengaluru, KA 560095</p>
+            <p className="flex items-center gap-2"><span className="text-sm">📧</span> <a href="mailto:creditbuddyofficial@gmail.com" className="hover:underline">creditbuddyofficial@gmail.com</a></p>
+            <p className="flex items-center gap-2"><span className="text-sm">✉️</span> <a href="mailto:info@creditbuddy.org.in" className="hover:underline">info@creditbuddy.org.in</a></p>
+            <p className="flex items-center gap-2"><span className="text-sm">📍</span> Sambalpur, Odisha, India - 768004</p>
+            <div className="text-[11px] text-ink-muted leading-relaxed pt-2 border-t border-ink/10 space-y-1">
+              <p className="font-bold text-ink">CREDITBUDDY PARTNERS PRIVATE LIMITED</p>
+              <p>CIN: U62090OD2026PTC053104 | GSTIN: 21AANCC6754D1ZS</p>
+              <p>PLOT NO. 1380/6628 Near Gram Devi Mandir, Matru Vihar, Shanti Nagar, Budharaja, Sambalpur, Odisha, 768004</p>
+            </div>
           </div>
         </div>
 
         {/* Right Column: Brutalist Contact Form */}
-        <div className="lg:col-span-7 bg-white brutal-card p-8 md:p-10" style={{ boxShadow: '8px 8px 0px #14100F' }}>
+        <div className="contact-form-card lg:col-span-7 bg-white brutal-card p-8 md:p-10" style={{ boxShadow: '8px 8px 0px #14100F' }}>
           {submitted ? (
             <div className="text-center py-12 space-y-4">
               <span className="text-5xl">🎉</span>

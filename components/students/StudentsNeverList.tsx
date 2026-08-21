@@ -1,7 +1,13 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { SplitText } from '@/components/landing/shared/SplitText';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const NEVER_ITEMS = [
   { title: 'No Salary Slips', desc: 'We know you are in college. We do not ask for pay stubs.' },
@@ -11,8 +17,25 @@ const NEVER_ITEMS = [
 ];
 
 export const StudentsNeverList = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap.fromTo('.never-card-item',
+        { y: 60, opacity: 0, scale: 0.9, rotate: -2 },
+        {
+          y: 0, opacity: 1, scale: 1, rotate: 0,
+          stagger: 0.1, duration: 0.8, ease: 'back.out(1.4)',
+          scrollTrigger: { trigger: containerRef.current, start: 'top 75%' }
+        }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-20 bg-ink text-bg-primary w-full relative overflow-hidden">
+    <section ref={containerRef} className="py-20 bg-ink text-bg-primary w-full relative overflow-hidden">
       {/* Full Width Thick Lemon Green Uniform Wavy Line behind the boxes */}
       <div className="absolute top-[65%] -translate-y-1/2 left-0 right-0 w-full pointer-events-none z-0 select-none opacity-90">
         <svg viewBox="0 0 1440 200" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-36 md:h-52">
@@ -43,7 +66,7 @@ export const StudentsNeverList = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {NEVER_ITEMS.map((item, i) => (
-            <div key={i} className="bg-bg-primary text-ink brutal-card p-6 flex flex-col justify-between" style={{ boxShadow: '4px 4px 0px #C8FF3D' }}>
+            <div key={i} className="never-card-item bg-bg-primary text-ink brutal-card p-6 flex flex-col justify-between" style={{ boxShadow: '4px 4px 0px #C8FF3D' }}>
               <span className="font-jetbrains text-2xl font-bold text-accent-coral">✕</span>
               <div className="mt-6">
                 <h3 className="font-bricolage font-extrabold text-xl mb-2">{item.title}</h3>

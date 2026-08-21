@@ -59,7 +59,7 @@ export const ShowcaseBorrow = () => {
             <div className="absolute inset-0 bg-accent-lime/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
             {/* 3 Smartphone Mockups Container */}
-            <div className="absolute inset-x-0 top-2 md:top-4 flex justify-center items-start px-2 pointer-events-none select-none z-0">
+            <div className="absolute inset-x-0 top-2 md:top-4 flex justify-center items-start px-1 sm:px-2 pointer-events-none select-none z-0 scale-[0.72] sm:scale-90 md:scale-100 transform origin-top">
               
               {/* Phone 1: Left Smartphone (CreditBuddy KYC Verification) */}
               <div className="w-[175px] sm:w-[220px] md:w-[260px] h-[520px] sm:h-[580px] md:h-[620px] bg-[#14100F] border border-ink rounded-[2.2rem] sm:rounded-[2.6rem] p-1 sm:p-1.5 shadow-[4px_4px_0px_#14100F] transform -rotate-8 translate-x-3 sm:translate-x-5 md:translate-x-7 translate-y-4 group-hover:-rotate-12 group-hover:translate-x-1 transition-transform duration-500 shrink-0 flex flex-col z-10">
@@ -163,9 +163,7 @@ export const ShowcaseBorrow = () => {
                     {/* App Bar */}
                     <div className="flex items-center justify-between border-b border-white/15 pb-1.5 mb-1.5">
                       <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-full bg-accent-lime text-ink flex items-center justify-center font-bricolage font-bold text-xs">
-                          C
-                        </div>
+                        <img src="/images/creditbuddy-logo.png" alt="CreditBuddy" className="w-5 h-5 object-contain" />
                         <span className="font-bricolage text-xs font-extrabold text-accent-lime">CreditBuddy</span>
                       </div>
                       <span className="font-jetbrains text-[8px] bg-accent-purple px-2 py-0.5 rounded-full text-white font-bold">5G ACTIVE</span>
@@ -338,13 +336,23 @@ export const ShowcaseBorrow = () => {
 
           {/* Side Info */}
           <div className="md:col-span-4 flex flex-col gap-8">
-            <div className="borrow-showcase-item flex-1 bg-ink text-white brutal-card p-8 flex flex-col justify-between" style={{ boxShadow: '6px 6px 0px #7B5CFF' }}>
-              <span className="font-bricolage font-extrabold text-3xl text-accent-lime">0%</span>
-              <p className="font-jakarta text-white/80">Interest for the first 30 days. Pay back what you borrow, nothing more.</p>
+            <div className="borrow-showcase-item flex-1 bg-ink text-white brutal-card p-8 flex flex-col justify-between relative overflow-hidden group" style={{ boxShadow: '6px 6px 0px #7B5CFF' }}>
+              <img 
+                src="/images/sticker3.png" 
+                alt="Sticker" 
+                className="absolute right-2 md:right-4 top-[38%] -translate-y-1/2 w-28 md:w-36 h-auto object-contain pointer-events-none opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 z-0" 
+              />
+              <span className="font-bricolage font-extrabold text-3xl text-accent-lime relative z-10">0%</span>
+              <p className="font-jakarta text-white/80 relative z-10 max-w-[70%] sm:max-w-none">Interest for the first 30 days. Pay back what you borrow, nothing more.</p>
             </div>
-            <div className="borrow-showcase-item flex-1 bg-accent-lime text-ink brutal-card p-8 flex flex-col justify-between">
-              <span className="font-bricolage font-extrabold text-3xl text-ink">60s</span>
-              <p className="font-jakarta text-ink font-medium">Approval time. Faster than making instant noodles.</p>
+            <div className="borrow-showcase-item flex-1 bg-accent-lime text-ink brutal-card p-8 flex flex-col justify-between relative overflow-hidden group">
+              <img 
+                src="/images/skincare-promo.png" 
+                alt="Promotion" 
+                className="absolute right-2 md:right-4 top-[30%] -translate-y-1/2 w-36 md:w-44 h-auto object-contain pointer-events-none opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 z-0" 
+              />
+              <span className="font-bricolage font-extrabold text-3xl text-ink relative z-10">60s</span>
+              <p className="font-jakarta text-ink font-medium relative z-10 max-w-[70%] sm:max-w-none">Approval time. Faster than making instant noodles.</p>
             </div>
           </div>
         </div>

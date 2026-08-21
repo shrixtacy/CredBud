@@ -28,14 +28,14 @@ export const StackPanelLearn = () => {
         
         {/* Foreground Copy */}
         <div className="absolute inset-0 flex items-center justify-center z-10 p-8 pointer-events-none">
-          <div className="max-w-2xl text-center">
+          <div className="max-w-4xl text-center">
             <span className="font-jetbrains text-ink font-normal tracking-widest uppercase text-xs brutal-pill bg-accent-purple/20 px-4 py-1.5 inline-block mb-4 pointer-events-auto">
               // 03. learn
             </span>
-            <h2 className="font-bricolage text-5xl md:text-7xl font-extrabold text-ink mb-6 tracking-tight">
-              Master your <span className="accent-underline text-ink">finances</span>.
+            <h2 className="font-bricolage text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-ink mb-6 tracking-tight whitespace-nowrap">
+              Master your <span className="accent-underline text-ink">finances.</span>
             </h2>
-            <p className="font-jakarta text-ink-muted text-xl leading-relaxed">
+            <p className="font-jakarta text-ink-muted text-lg md:text-xl leading-relaxed max-w-xl mx-auto">
               Byte-sized financial education. Understand credit scores, taxes, and investing before you graduate.
             </p>
           </div>

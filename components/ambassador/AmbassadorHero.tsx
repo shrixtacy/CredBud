@@ -1,23 +1,41 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { SplitText } from '@/components/landing/shared/SplitText';
+import gsap from 'gsap';
 
 export const AmbassadorHero = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap.fromTo('.amb-hero-badge',
+        { y: -40, opacity: 0, scale: 0.8 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(1.8)', delay: 0.2 }
+      );
+      gsap.fromTo('.amb-hero-cta',
+        { y: 50, opacity: 0, scale: 0.85 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.85, ease: 'back.out(2)', delay: 0.6 }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="relative pt-16 md:pt-20 pb-40 md:pb-44 px-6 md:px-12 bg-bg-primary text-ink border-b-[1.6px] border-ink overflow-hidden">
+    <section ref={containerRef} className="relative pt-16 md:pt-20 pb-40 md:pb-44 px-6 md:px-12 bg-bg-primary text-ink border-b-[1.6px] border-ink overflow-hidden">
       {/* Background Campus Illustration Image */}
       <div className="absolute inset-0 w-full h-full z-0 select-none pointer-events-none">
         <img
           src="/ambassador-hero-bg.png"
           alt="Campus ambassador background"
-          className="w-full h-full object-cover object-top opacity-100"
+          className="w-full h-full object-cover object-[25%_top] md:object-top opacity-100"
         />
       </div>
 
       <div className="max-w-7xl mx-auto relative flex flex-col items-center text-center z-10">
         
-        <span className="font-jetbrains text-xs font-normal brutal-pill bg-accent-gold px-4 py-1.5 mb-6 inline-block">
+        <span className="amb-hero-badge font-jetbrains text-xs font-normal brutal-pill bg-accent-gold px-4 py-1.5 mb-6 inline-block">
           // lead on your campus
         </span>
         
@@ -43,7 +61,7 @@ export const AmbassadorHero = () => {
           />
         </p>
 
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        <div className="amb-hero-cta flex flex-wrap items-center justify-center gap-4">
           <button className="px-8 py-4 bg-ink text-bg-primary font-bricolage font-bold text-base brutal-pill brutal-shadow-purple hover:scale-105 transition-transform cursor-pointer">
             Apply Now ↗
           </button>
