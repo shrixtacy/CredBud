@@ -10,10 +10,10 @@ export const FinalCTA = () => {
         <span className="font-jetbrains text-ink font-normal tracking-widest uppercase text-xs brutal-pill bg-accent-lime px-4 py-1.5 inline-block mb-6">
           // start today
         </span>
-        <h2 className="font-bricolage text-6xl md:text-[6rem] font-extrabold tracking-tight leading-[1.05] mb-8 text-ink">
+        <h2 className="font-bricolage text-4xl sm:text-6xl md:text-[6rem] font-extrabold tracking-tight leading-[1.05] mb-8 text-ink">
           Ready to take <KeywordHighlight text="control" />?
         </h2>
-        <p className="font-jakarta text-xl text-ink-muted mb-12 max-w-2xl mx-auto">
+        <p className="font-jakarta text-base sm:text-xl text-ink-muted mb-12 max-w-2xl mx-auto">
           Join thousands of students already building their financial future with CreditBuddy.
         </p>
         <button suppressHydrationWarning className="px-10 py-5 bg-ink text-bg-primary rounded-full font-bricolage font-bold text-lg brutal-pill brutal-shadow-purple transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer">

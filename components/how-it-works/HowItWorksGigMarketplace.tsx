@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Briefcase, ArrowUpRight, Zap, Star, CheckCircle, Sparkles, Filter } from 'lucide-react';
+import { Briefcase, ArrowUpRight, Zap, Star, CheckCircle, Sparkles, Filter, MapPin, Clock } from 'lucide-react';
 
 interface Gig {
   id: string;
@@ -142,9 +142,9 @@ export const HowItWorksGigMarketplace = () => {
                     {gig.title}
                   </h3>
 
-                  <div className="font-mono text-xs text-[#0D1B2A]/60 space-y-1">
-                    <span className="block font-medium">📍 {gig.college}</span>
-                    <span className="block font-medium">⏱ {gig.timeEstimate}</span>
+                  <div className="font-mono text-xs text-[#0D1B2A]/60 space-y-1.5 pt-1">
+                    <span className="flex items-center gap-1.5 font-medium"><MapPin className="w-3.5 h-3.5" /> {gig.college}</span>
+                    <span className="flex items-center gap-1.5 font-medium"><Clock className="w-3.5 h-3.5" /> {gig.timeEstimate}</span>
                   </div>
                 </div>
 

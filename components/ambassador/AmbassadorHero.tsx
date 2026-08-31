@@ -23,7 +23,7 @@ export const AmbassadorHero = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative pt-16 md:pt-20 pb-40 md:pb-44 px-6 md:px-12 bg-bg-primary text-ink border-b-[1.6px] border-ink overflow-hidden">
+    <section ref={containerRef} className="relative pt-32 sm:pt-36 md:pt-44 pb-32 md:pb-40 px-4 md:px-12 bg-bg-primary text-ink border-b-[1.6px] border-ink overflow-hidden">
       {/* Background Campus Illustration Image */}
       <div className="absolute inset-0 w-full h-full z-0 select-none pointer-events-none">
         <img

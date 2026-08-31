@@ -56,7 +56,7 @@ export const FinancialLiteracySection = () => {
               <BookOpen className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-cabinet text-lg font-bold text-ink uppercase tracking-tight">📌 5-Min Format</h3>
+              <h3 className="font-cabinet text-lg font-bold text-ink uppercase tracking-tight">5-Min Format</h3>
               <p className="font-satoshi text-xs text-ink/60 mt-1 leading-relaxed">
                 Real scenarios, not textbook theory. Bite-sized micro modules designed for busy college schedules.
               </p>
@@ -68,7 +68,7 @@ export const FinancialLiteracySection = () => {
               <Coins className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-cabinet text-lg font-bold text-ink uppercase tracking-tight">🪙 Buddy Coins</h3>
+              <h3 className="font-cabinet text-lg font-bold text-ink uppercase tracking-tight">Buddy Coins</h3>
               <p className="font-satoshi text-xs text-ink/60 mt-1 leading-relaxed">
                 Earn coins for every module completed. Build streaks and redeem for vouchers or loan fee waivers.
               </p>
@@ -80,7 +80,7 @@ export const FinancialLiteracySection = () => {
               <Users className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-cabinet text-lg font-bold text-ink uppercase tracking-tight">🌐 Peer Forum</h3>
+              <h3 className="font-cabinet text-lg font-bold text-ink uppercase tracking-tight">Peer Forum</h3>
               <p className="font-satoshi text-xs text-ink/60 mt-1 leading-relaxed">
                 Anonymous campus community — ask real money questions without judgment or fear.
               </p>
@@ -96,7 +96,7 @@ export const FinancialLiteracySection = () => {
           <div className="lg:col-span-8 space-y-3">
             <div className="flex justify-between items-center mb-2">
               <h3 className="font-cabinet text-2xl font-bold text-ink uppercase tracking-tight">
-                📚 What you&apos;ll actually learn
+                What you&apos;ll actually learn
               </h3>
               <span className="text-xs text-ink/50 font-bold uppercase tracking-wider">Tap module to finish</span>
             </div>

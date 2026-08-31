@@ -175,7 +175,7 @@ export const ShowcaseBorrow = () => {
                     {/* Top Student Profile Greeting Banner */}
                     <div className="bg-white/10 p-2.5 rounded-xl border border-white/15 flex items-center justify-between shadow-sm">
                       <div>
-                        <p className="font-bricolage text-xs font-extrabold text-white">Hey Dev! 👋</p>
+                        <p className="font-bricolage text-xs font-extrabold text-white">Hey Dev!</p>
                         <p className="font-jetbrains text-[8px] text-white/70">IIT Bombay • 4th Year</p>
                       </div>
                       <span className="font-jetbrains text-[8px] bg-accent-lime text-ink px-2 py-0.5 rounded font-bold">PRO</span>

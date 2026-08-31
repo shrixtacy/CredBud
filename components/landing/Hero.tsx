@@ -144,7 +144,7 @@ export const Hero = () => {
         style={{ transformStyle: 'preserve-3d' }}
       >
         {/* Main Text Content Column */}
-        <div className="flex flex-col items-center justify-center max-w-5xl z-30 w-full -mt-14 md:-mt-24" style={{ transform: 'translateZ(80px)' }}>
+        <div className="flex flex-col items-center justify-center max-w-5xl z-30 w-full mt-8 md:mt-16 pt-8 md:pt-12" style={{ transform: 'translateZ(80px)' }}>
           
           {/* Eyebrow Badge */}
           <div 

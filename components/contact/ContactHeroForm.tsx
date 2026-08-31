@@ -3,6 +3,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Mail, MapPin, CheckCircle2 } from 'lucide-react';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -51,9 +52,9 @@ export const ContactHeroForm = () => {
           </p>
 
           <div className="space-y-3 font-jetbrains text-xs text-ink pt-4">
-            <p className="flex items-center gap-2"><span className="text-sm">📧</span> <a href="mailto:creditbuddyofficial@gmail.com" className="hover:underline">creditbuddyofficial@gmail.com</a></p>
-            <p className="flex items-center gap-2"><span className="text-sm">✉️</span> <a href="mailto:info@creditbuddy.org.in" className="hover:underline">info@creditbuddy.org.in</a></p>
-            <p className="flex items-center gap-2"><span className="text-sm">📍</span> Sambalpur, Odisha, India - 768004</p>
+            <p className="flex items-center gap-2"><Mail className="w-3.5 h-3.5 text-accent-purple" /> <a href="mailto:creditbuddyofficial@gmail.com" className="hover:underline">creditbuddyofficial@gmail.com</a></p>
+            <p className="flex items-center gap-2"><Mail className="w-3.5 h-3.5 text-accent-purple" /> <a href="mailto:info@creditbuddy.org.in" className="hover:underline">info@creditbuddy.org.in</a></p>
+            <p className="flex items-center gap-2"><MapPin className="w-3.5 h-3.5 text-accent-purple" /> Sambalpur, Odisha, India - 768004</p>
             <div className="text-[11px] text-ink-muted leading-relaxed pt-2 border-t border-ink/10 space-y-1">
               <p className="font-bold text-ink">CREDITBUDDY PARTNERS PRIVATE LIMITED</p>
               <p>CIN: U62090OD2026PTC053104 | GSTIN: 21AANCC6754D1ZS</p>
@@ -65,9 +66,9 @@ export const ContactHeroForm = () => {
         {/* Right Column: Brutalist Contact Form */}
         <div className="contact-form-card lg:col-span-7 bg-white brutal-card p-8 md:p-10" style={{ boxShadow: '8px 8px 0px #14100F' }}>
           {submitted ? (
-            <div className="text-center py-12 space-y-4">
-              <span className="text-5xl">🎉</span>
-              <h3 className="font-bricolage text-3xl font-extrabold text-ink">Message Received!</h3>
+            <div className="text-center py-12 space-y-4 flex flex-col items-center">
+              <CheckCircle2 className="w-16 h-16 text-accent-lime" strokeWidth={1.8} />
+              <h3 className="font-bricolage text-3xl font-extrabold text-ink mt-2">Message Received!</h3>
               <p className="font-jakarta text-ink-muted text-sm max-w-sm mx-auto">
                 Thanks for reaching out! Our team will respond to your registered email shortly.
               </p>

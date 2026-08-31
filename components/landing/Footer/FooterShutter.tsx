@@ -2,6 +2,7 @@
 
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
+import { MapPin, Mail } from 'lucide-react';
 
 export const FooterWordmark = () => {
   return (
@@ -53,10 +54,10 @@ export const FooterShutter = () => {
           <div className="font-jetbrains text-[10px] text-bg-primary/60 leading-relaxed space-y-1">
             <p className="font-semibold text-bg-primary/80">CREDITBUDDY PARTNERS PRIVATE LIMITED</p>
             <p>CIN: U62090OD2026PTC053104 | GSTIN: 21AANCC6754D1ZS</p>
-            <p>📍 PLOT NO. 1380/6628 Near Gram Devi Mandir, Matru Vihar, Shanti Nagar, Budharaja, Sambalpur, Odisha, 768004</p>
+            <p className="flex items-start gap-1.5"><MapPin className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" /> PLOT NO. 1380/6628 Near Gram Devi Mandir, Matru Vihar, Shanti Nagar, Budharaja, Sambalpur, Odisha, 768004</p>
             <div className="flex flex-col gap-0.5 pt-1 text-accent-lime font-medium">
-              <a href="mailto:info@creditbuddy.org.in" className="hover:underline">✉️ info@creditbuddy.org.in</a>
-              <a href="mailto:creditbuddyofficial@gmail.com" className="hover:underline">📧 creditbuddyofficial@gmail.com</a>
+              <a href="mailto:info@creditbuddy.org.in" className="hover:underline flex items-center gap-1.5"><Mail className="w-3 h-3" /> info@creditbuddy.org.in</a>
+              <a href="mailto:creditbuddyofficial@gmail.com" className="hover:underline flex items-center gap-1.5"><Mail className="w-3 h-3" /> creditbuddyofficial@gmail.com</a>
             </div>
           </div>
         </div>

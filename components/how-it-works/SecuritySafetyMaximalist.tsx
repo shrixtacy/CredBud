@@ -32,7 +32,7 @@ export const SecuritySafetyMaximalist = () => {
             <div className="w-12 h-12 rounded-xl bg-accent-blue/10 border border-accent-blue/20 flex items-center justify-center text-accent-blue">
               <Lock className="w-6 h-6" />
             </div>
-            <h3 className="font-cabinet text-xl font-bold text-ink uppercase tracking-tight">🔒 Data Security</h3>
+            <h3 className="font-cabinet text-xl font-bold text-ink uppercase tracking-tight">Data Security</h3>
             
             <ul className="space-y-3 pt-1">
               {[
@@ -55,7 +55,7 @@ export const SecuritySafetyMaximalist = () => {
             <div className="w-12 h-12 rounded-xl bg-accent-green/10 border border-accent-green/20 flex items-center justify-center text-accent-green">
               <Scale className="w-6 h-6" />
             </div>
-            <h3 className="font-cabinet text-xl font-bold text-ink uppercase tracking-tight">⚖️ Financial Safety</h3>
+            <h3 className="font-cabinet text-xl font-bold text-ink uppercase tracking-tight">Financial Safety</h3>
             
             <ul className="space-y-3 pt-1">
               {[
@@ -78,7 +78,7 @@ export const SecuritySafetyMaximalist = () => {
             <div className="w-12 h-12 rounded-xl bg-accent-blue/10 border border-accent-blue/20 flex items-center justify-center text-accent-blue">
               <ShieldCheck className="w-6 h-6" />
             </div>
-            <h3 className="font-cabinet text-xl font-bold text-ink uppercase tracking-tight">🛡️ Legal Compliance</h3>
+            <h3 className="font-cabinet text-xl font-bold text-ink uppercase tracking-tight">Legal Compliance</h3>
             
             <ul className="space-y-3 pt-1">
               {[

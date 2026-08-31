@@ -71,7 +71,7 @@ export const AmbassadorRoleGrid = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-20 md:py-28 px-6 md:px-12 bg-bg-primary w-full relative">
+    <section ref={containerRef} className="py-12 md:py-28 px-4 md:px-12 bg-bg-primary w-full relative">
       {/* Background SVG Paper Elements */}
       <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0 opacity-25 overflow-hidden">
         <img
@@ -81,9 +81,9 @@ export const AmbassadorRoleGrid = () => {
         />
       </div>
 
-      <div className="mb-16 text-center max-w-2xl mx-auto relative z-10">
+      <div className="mb-12 md:mb-16 text-center max-w-2xl mx-auto relative z-10">
         <span className="font-jetbrains text-ink-muted text-xs block mb-2">// your role</span>
-        <h2 className="font-bricolage text-4xl md:text-6xl font-extrabold tracking-tight text-ink">
+        <h2 className="font-bricolage text-3xl md:text-6xl font-extrabold tracking-tight text-ink">
           <SplitText
             text="What you will do as an Ambassador."
             splitType="words"
@@ -93,12 +93,12 @@ export const AmbassadorRoleGrid = () => {
             tag="span"
           />
         </h2>
-        <p className="font-jakarta text-ink-muted text-sm md:text-base mt-4">
-          Scroll down to explore your key campus responsibilities.
+        <p className="font-jakarta text-ink-muted text-xs md:text-base mt-3">
+          Scroll down to explore your key campus leadership responsibilities.
         </p>
       </div>
 
-      <div className="max-w-4xl mx-auto space-y-8 pb-16 relative z-10">
+      <div className="max-w-4xl mx-auto space-y-6 pb-20 relative z-10">
         {ROLES.map((role, i) => {
           const Icon = role.icon;
           return (
@@ -107,32 +107,32 @@ export const AmbassadorRoleGrid = () => {
               className={`ambassador-sticky-card sticky ${role.topOffset} ${role.zIndex} w-full`}
             >
               <div
-                className={`${role.color} brutal-card p-8 md:p-12 text-ink shadow-[8px_8px_0px_#14100F] border-[2px] border-ink rounded-3xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6 transition-transform hover:-translate-y-1`}
+                className={`${role.color} brutal-card p-6 md:p-10 text-ink shadow-[8px_8px_0px_#14100F] border-[2px] border-ink rounded-3xl min-h-[220px] md:min-h-[240px] flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-6 transition-transform hover:-translate-y-1`}
               >
-                <div className="space-y-4 max-w-xl">
+                <div className="space-y-3 max-w-xl">
                   <div className="flex items-center gap-3">
                     <span className="font-jetbrains text-xs font-bold text-ink brutal-pill bg-white px-3 py-1 border border-ink">
                       {role.badgeText}
                     </span>
-                    <span className="font-jetbrains text-sm font-bold text-ink/70">
+                    <span className="font-jetbrains text-xs font-bold text-ink/70">
                       STEP {role.num}
                     </span>
                   </div>
 
-                  <h3 className="font-bricolage font-extrabold text-3xl md:text-5xl text-ink tracking-tight">
+                  <h3 className="font-bricolage font-extrabold text-2xl md:text-4xl text-ink tracking-tight">
                     {role.title}
                   </h3>
 
-                  <p className="font-jakarta text-sm md:text-lg text-ink/90 font-medium leading-relaxed">
+                  <p className="font-jakarta text-xs md:text-base text-ink/90 font-medium leading-relaxed">
                     {role.desc}
                   </p>
                 </div>
 
-                <div className="flex flex-col items-end justify-between self-stretch md:self-auto">
-                  <div className="w-16 h-16 md:w-20 md:h-20 bg-white border-[2px] border-ink rounded-2xl flex items-center justify-center shadow-[4px_4px_0px_#14100F]">
-                    <Icon className="w-8 h-8 md:w-10 md:h-10 text-ink" />
+                <div className="flex flex-row md:flex-col items-center md:items-end justify-between self-stretch md:self-auto w-full md:w-auto mt-2 md:mt-0">
+                  <div className="w-12 h-12 md:w-16 md:h-16 bg-white border-[2px] border-ink rounded-2xl flex items-center justify-center shadow-[3px_3px_0px_#14100F]">
+                    <Icon className="w-6 h-6 md:w-8 md:h-8 text-ink" />
                   </div>
-                  <span className="font-jetbrains font-extrabold text-5xl md:text-7xl text-ink/20 mt-4 md:mt-0 select-none">
+                  <span className="font-jetbrains font-extrabold text-4xl md:text-6xl text-ink/20 select-none mt-0 md:mt-2">
                     {role.num}
                   </span>
                 </div>

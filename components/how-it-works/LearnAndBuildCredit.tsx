@@ -16,17 +16,9 @@ const LESSONS = [
   { id: 'investing', title: 'Investing, gently', time: '7 min', desc: 'Start with ₹100. Understand SIPs, compounding, and why time in the market beats timing the market.' },
 ];
 
-const STEPS = [
-  { num: '01', title: 'Borrow small, smart', desc: 'Take your first student-friendly advance in minutes.' },
-  { num: '02', title: 'Repay on time', desc: 'Every on-time payment adds points to your CreditBuddy score.' },
-  { num: '03', title: 'Watch it climb', desc: 'Track your score live and unlock better limits & perks.' },
-  { num: '04', title: 'Graduate credit-ready', desc: 'Leave college with real credibility for loans & cards.' },
-];
-
 export const LearnAndBuildCredit = () => {
   const [selectedLesson, setSelectedLesson] = useState('investing');
   const containerRef = useRef<HTMLDivElement>(null);
-  const progressBarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -47,26 +39,6 @@ export const LearnAndBuildCredit = () => {
           scrollTrigger: { trigger: containerRef.current, start: 'top 75%' }
         }
       );
-
-      // Progress bar fill animation
-      if (progressBarRef.current) {
-        gsap.fromTo(progressBarRef.current,
-          { width: '0%' },
-          {
-            width: '82%', duration: 1.2, ease: 'power3.out',
-            scrollTrigger: { trigger: progressBarRef.current, start: 'top 85%' }
-          }
-        );
-      }
-
-      // Steps entrance
-      gsap.fromTo('.step-row-item',
-        { x: 40, opacity: 0 },
-        {
-          x: 0, opacity: 1, stagger: 0.1, duration: 0.75, ease: 'power3.out',
-          scrollTrigger: { trigger: '.step-row-item', start: 'top 80%' }
-        }
-      );
     }, containerRef);
 
     return () => ctx.revert();
@@ -75,7 +47,7 @@ export const LearnAndBuildCredit = () => {
   const activeLessonObj = LESSONS.find(l => l.id === selectedLesson) || LESSONS[3];
 
   return (
-    <section ref={containerRef} className="py-20 md:py-28 px-6 md:px-12 bg-bg-primary w-full max-w-7xl mx-auto space-y-28">
+    <section ref={containerRef} className="py-20 md:py-28 px-6 md:px-12 bg-bg-primary w-full max-w-7xl mx-auto">
       
       {/* 1. LEARN SECTION */}
       <div>
@@ -104,7 +76,7 @@ export const LearnAndBuildCredit = () => {
                   </div>
                   <span className="font-bricolage font-bold text-base">{l.title}</span>
                 </div>
-                <span className="font-jetbrains text-xs opacity-75">⏱ {l.time}</span>
+                <span className="font-jetbrains text-xs opacity-75">{l.time}</span>
               </button>
             ))}
           </div>
@@ -131,81 +103,9 @@ export const LearnAndBuildCredit = () => {
 
             <div>
               <button suppressHydrationWarning className="px-6 py-3.5 bg-ink text-bg-primary font-bricolage font-bold text-sm brutal-pill brutal-shadow-purple transition-transform hover:scale-105 cursor-pointer inline-flex items-center gap-2">
-                📖 Start lesson <span className="font-jetbrains text-xs text-accent-lime">free, forever</span>
+                <BookOpen className="w-4 h-4" /> Start lesson <span className="font-jetbrains text-xs text-accent-lime">free, forever</span>
               </button>
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* 2. BUILD CREDIT SECTION */}
-      <div>
-        <div className="flex justify-end mb-2">
-          <span className="font-jetbrains text-ink-muted text-xs">// build credit</span>
-        </div>
-        <div className="flex justify-end mb-12">
-          <h2 className="font-bricolage text-4xl md:text-6xl font-extrabold tracking-tight text-ink text-right">
-            Small habits. Big future.
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Left: Credit Score Card */}
-          <div className="lg:col-span-6 bg-white brutal-card p-8 md:p-10 space-y-8" style={{ boxShadow: '8px 8px 0px #14100F' }}>
-            <div className="flex justify-between items-center">
-              <span className="font-jetbrains text-xs text-ink-muted">CreditBuddy Score</span>
-              <span className="font-jetbrains text-xs font-bold bg-accent-lime text-ink px-3 py-1 rounded-full brutal-border">
-                excellent
-              </span>
-            </div>
-
-            <div>
-              <div className="flex items-baseline gap-2">
-                <span className="font-bricolage text-6xl md:text-7xl font-extrabold text-ink">742</span>
-                <span className="font-jetbrains text-sm text-ink-muted">/ 900</span>
-              </div>
-
-              {/* Progress Bar */}
-              <div className="mt-4 w-full h-3 bg-bg-secondary rounded-full overflow-hidden brutal-border">
-                <div ref={progressBarRef} className="h-full bg-gradient-to-r from-accent-coral via-accent-gold to-accent-lime" />
-              </div>
-            </div>
-
-            {/* Metrics */}
-            <div className="grid grid-cols-3 gap-3">
-              <div className="bg-white brutal-card p-3 text-center">
-                <span className="font-jetbrains text-[9px] text-ink-muted uppercase block">Payments</span>
-                <span className="font-jetbrains text-xs font-bold text-ink mt-0.5 block">on time</span>
-              </div>
-              <div className="bg-white brutal-card p-3 text-center">
-                <span className="font-jetbrains text-[9px] text-ink-muted uppercase block">Streak</span>
-                <span className="font-jetbrains text-xs font-bold text-ink mt-0.5 block">9 months</span>
-              </div>
-              <div className="bg-white brutal-card p-3 text-center">
-                <span className="font-jetbrains text-[9px] text-ink-muted uppercase block">Limit</span>
-                <span className="font-jetbrains text-xs font-bold text-ink mt-0.5 block">unlocked ↑</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Right: 4 Steps */}
-          <div className="lg:col-span-6 space-y-6">
-            {STEPS.map((step, i) => (
-              <div key={i} className="step-row-item flex items-start gap-4 pb-6 border-b border-ink/10 last:border-0">
-                <span className="font-jetbrains text-xs font-bold text-accent-purple bg-accent-purple/10 px-2.5 py-1 rounded-md brutal-border">
-                  {step.num}
-                </span>
-                <div>
-                  <h4 className="font-bricolage font-extrabold text-xl text-ink flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-accent-purple" />
-                    {step.title}
-                  </h4>
-                  <p className="font-jakarta text-sm text-ink-muted mt-1 leading-relaxed">
-                    {step.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </div>

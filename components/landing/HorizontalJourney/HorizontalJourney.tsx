@@ -23,27 +23,40 @@ export const HorizontalJourney = () => {
 
   useEffect(() => {
     let ctx = gsap.context(() => {
-      const sections = gsap.utils.toArray('.horizontal-scene');
+      // Only execute horizontal scroll triggers on desktop viewports to avoid calculation offsets on mobile
+      ScrollTrigger.matchMedia({
+        "(min-width: 768px)": function() {
+          const sections = gsap.utils.toArray('.horizontal-scene');
 
-      gsap.to(sections, {
-        xPercent: -100 * (sections.length - 1),
-        ease: "none",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          pin: true,
-          scrub: 1,
-          snap: 1 / (sections.length - 1),
-          end: () => "+=" + scrollWrapperRef.current?.scrollWidth,
-          invalidateOnRefresh: true,
+          gsap.to(sections, {
+            xPercent: -100 * (sections.length - 1),
+            ease: "none",
+            scrollTrigger: {
+              trigger: containerRef.current,
+              pin: true,
+              scrub: 1,
+              snap: 1 / (sections.length - 1),
+              end: () => "+=" + scrollWrapperRef.current?.scrollWidth,
+              invalidateOnRefresh: true,
+            }
+          });
         }
       });
     }, containerRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      // Ensure all scroll triggers associated with this container are cleanly destroyed
+      ScrollTrigger.getAll().forEach(trigger => {
+        if (trigger.trigger === containerRef.current) {
+          trigger.kill(true);
+        }
+      });
+    };
   }, []);
 
   return (
-    <section ref={containerRef} className="h-screen w-full overflow-hidden bg-bg-primary flex items-center relative z-10">
+    <section ref={containerRef} className="hidden md:flex h-screen w-full overflow-hidden bg-bg-primary items-center relative z-10">
       <div ref={scrollWrapperRef} className="w-[700vw] h-full flex">
 
         {scenes.map((scene, i) => (
@@ -56,7 +69,7 @@ export const HorizontalJourney = () => {
               <span className="font-jetbrains text-ink brutal-pill bg-accent-lime px-4 py-1.5 text-sm mb-8">
                 Phase 0{i + 1}
               </span>
-              <h2 className="font-bricolage text-6xl md:text-8xl lg:text-[7rem] font-extrabold text-ink tracking-tighter leading-tight mb-6">
+              <h2 className="font-bricolage text-4xl sm:text-6xl md:text-8xl lg:text-[7rem] font-extrabold text-ink tracking-tighter leading-tight mb-6">
                 {scene.title}
               </h2>
               <p className="font-jakarta text-xl text-ink-muted">
