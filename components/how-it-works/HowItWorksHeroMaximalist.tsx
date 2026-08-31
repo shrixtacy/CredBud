@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { Clock, ShieldCheck, Zap, Sparkles } from 'lucide-react';
+import { Clock, ShieldCheck, Zap, Sparkles, Tag } from 'lucide-react';
 import { ThreeDPhoneSimulator } from './ThreeDPhoneSimulator';
 
 export const HowItWorksHeroMaximalist = () => {
@@ -30,11 +30,11 @@ export const HowItWorksHeroMaximalist = () => {
       <div className="max-w-5xl mx-auto z-10 flex flex-col items-center relative">
         
         {/* Floating Sticker Badges */}
-        <div className="hidden lg:flex absolute -top-4 -left-10 rotate-[-6deg] px-4 py-2 bg-accent-yellow text-ink rounded-xl font-cabinet text-xs font-black uppercase tracking-wider shadow-md border border-ink/15 animate-bounce" style={{ animationDuration: '3s' }}>
-          🏷️ 5 MIN APPROVAL
+        <div className="hidden lg:flex absolute -top-4 -left-10 rotate-[-6deg] px-4 py-2 bg-accent-yellow text-ink rounded-xl font-cabinet text-xs font-black uppercase tracking-wider shadow-md border border-ink/15 animate-bounce flex items-center gap-1.5" style={{ animationDuration: '3s' }}>
+          <Tag className="w-3.5 h-3.5" /> 5 MIN APPROVAL
         </div>
-        <div className="hidden lg:flex absolute -top-2 -right-8 rotate-[5deg] px-4 py-2 bg-accent-green text-white rounded-xl font-cabinet text-xs font-black uppercase tracking-wider shadow-md border border-ink/15 animate-pulse">
-          ⚡ 60s UPI DISBURSAL
+        <div className="hidden lg:flex absolute -top-2 -right-8 rotate-[5deg] px-4 py-2 bg-accent-green text-white rounded-xl font-cabinet text-xs font-black uppercase tracking-wider shadow-md border border-ink/15 animate-pulse flex items-center gap-1.5">
+          <Zap className="w-3.5 h-3.5" /> 60s UPI DISBURSAL
         </div>
 
         {/* Eyebrow Badge Pill */}

@@ -2,16 +2,11 @@ import { SmoothScroll } from '@/components/landing/shared/SmoothScroll';
 import { GrainOverlay } from '@/components/landing/shared/GrainOverlay';
 import { IntroSequence } from '@/components/landing/IntroSequence';
 import { Hero } from '@/components/landing/Hero';
-import { InteractiveFlow } from '@/components/landing/InteractiveFlow';
 import { HeroMarquee } from '@/components/landing/HeroMarquee';
 import { WhyWeExist } from '@/components/landing/WhyWeExist';
 import { StickyStack } from '@/components/landing/StickyStack/StickyStack';
 import { HorizontalJourney } from '@/components/landing/HorizontalJourney/HorizontalJourney';
 import { SignatureMarquee } from '@/components/landing/SignatureMarquee';
-import { ShowcaseBorrow } from '@/components/landing/Showcase/ShowcaseBorrow';
-import { ShowcaseEarn } from '@/components/landing/Showcase/ShowcaseEarn';
-import { ShowcaseLearn } from '@/components/landing/Showcase/ShowcaseLearn';
-import { TrustSection } from '@/components/landing/TrustSection';
 import { StudentStories } from '@/components/landing/StudentStories';
 import { FinalCTA } from '@/components/landing/FinalCTA';
 import { FooterShutter } from '@/components/landing/Footer/FooterShutter';
@@ -24,16 +19,11 @@ export default function Home() {
       <main className="relative w-full block">
         <IntroSequence />
         <Hero />
-        <InteractiveFlow />
         <HeroMarquee />
         <WhyWeExist />
         <StickyStack />
         <HorizontalJourney />
         <SignatureMarquee />
-        <ShowcaseBorrow />
-        <ShowcaseEarn />
-        <ShowcaseLearn />
-        <TrustSection />
         <StudentStories />
 
         {/* Shutter setup for FinalCTA and Footer */}

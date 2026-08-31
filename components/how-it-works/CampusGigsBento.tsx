@@ -94,13 +94,13 @@ export const CampusGigsBento = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-20 md:py-28 px-6 md:px-12 bg-ink text-bg-primary w-full">
+    <section ref={containerRef} className="py-10 md:py-28 px-4 md:px-12 bg-ink text-bg-primary w-full overflow-hidden">
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-16 gap-6">
           <div>
-            <h2 className="font-bricolage text-4xl md:text-6xl font-extrabold tracking-tight leading-tight max-w-2xl">
+            <h2 className="font-bricolage text-3xl md:text-6xl font-extrabold tracking-tight leading-tight max-w-2xl">
               Money doesn&apos;t grow on trees. <span className="text-accent-lime">It grows on campus.</span>
             </h2>
           </div>
@@ -109,8 +109,32 @@ export const CampusGigsBento = () => {
           </p>
         </div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        {/* Mobile Active Gigs List */}
+        <div className="flex flex-col md:hidden space-y-3">
+          {GIGS.map((gig, i) => (
+            <div 
+              key={i}
+              className="flex items-center justify-between p-3 bg-white brutal-border text-ink rounded-2xl"
+              style={{ boxShadow: '3px 3px 0px #FBF7EF' }}
+            >
+              <div className="flex items-center gap-3">
+                <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 brutal-border ${gig.color.includes('text-white') ? gig.color.replace('text-white', 'text-ink') : gig.color}`}>
+                  {gig.icon}
+                </div>
+                <div>
+                  <h4 className="font-bricolage font-extrabold text-sm text-ink leading-tight">{gig.title}</h4>
+                  <p className="font-jetbrains text-[10px] text-ink-muted mt-0.5">{gig.pay}</p>
+                </div>
+              </div>
+              <span className="font-jetbrains text-[9px] font-bold bg-accent-lime text-ink border border-ink/20 px-2.5 py-0.5 rounded-full uppercase tracking-wider select-none">
+                Active
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop Bento Grid */}
+        <div className="calc-gigs-grid hidden md:grid md:grid-cols-4 gap-4">
           {GIGS.map((gig, i) => (
             <div
               key={i}

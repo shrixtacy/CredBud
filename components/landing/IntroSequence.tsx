@@ -17,6 +17,12 @@ export const IntroSequence = () => {
   const lenis = useLenis();
 
   useEffect(() => {
+    // Set global flag that intro is active
+    if (typeof window !== 'undefined') {
+      (window as any).__introActive = true;
+      window.dispatchEvent(new CustomEvent('intro-start'));
+    }
+
     // Lock scroll while intro plays
     document.body.style.overflow = 'hidden';
     lenis?.stop();
@@ -32,6 +38,12 @@ export const IntroSequence = () => {
             ctxRef.current = null;
           }
           setDone(true);
+          
+          // Clear active flag and dispatch completion event
+          if (typeof window !== 'undefined') {
+            (window as any).__introActive = false;
+            window.dispatchEvent(new CustomEvent('intro-complete'));
+          }
         },
       });
 
@@ -54,6 +66,9 @@ export const IntroSequence = () => {
     return () => {
       document.body.style.overflow = '';
       lenis?.start();
+      if (typeof window !== 'undefined') {
+        (window as any).__introActive = false;
+      }
       // Only revert if onComplete hasn't already done so
       if (ctxRef.current) {
         ctxRef.current.revert();

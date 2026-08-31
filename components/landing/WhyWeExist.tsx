@@ -3,28 +3,31 @@
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Ban, Coins, GraduationCap, AlertTriangle } from 'lucide-react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const PROBLEMS = [
   {
-    emoji: '❌',
+    icon: Ban,
     title: "Banks don't see you.",
     desc: "No salary. No history. So they shut the door before you even start.",
     color: '#7B5CFF',
   },
   {
-    emoji: '💸',
+    icon: Coins,
     title: "Apps take advantage.",
     desc: "Hidden fees, traps, and fine print designed to cost you more.",
     color: '#FF5A3C',
   },
   {
-    emoji: '🎓',
+    icon: GraduationCap,
     title: "No one shows you how.",
     desc: "Real money skills? Missing from classrooms and real life.",
     color: '#FFD23F',
   },
   {
-    emoji: '⚠️',
+    icon: AlertTriangle,
     title: "The system isn't built for you.",
     desc: "Credit was never designed with students in mind.",
     color: '#35C8FF',
@@ -102,13 +105,13 @@ export const WhyWeExist = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative w-[95%] md:w-[96%] mx-auto my-6 md:my-10 bg-bg-primary text-ink py-16 md:py-24 px-6 md:px-12 overflow-hidden rounded-[2rem] md:rounded-[3.5rem] brutal-border"
+      className="relative w-[95%] md:w-[96%] mx-auto my-4 md:my-10 bg-bg-primary text-ink py-8 md:py-24 px-4 md:px-12 overflow-hidden rounded-[1.5rem] md:rounded-[3.5rem] brutal-border"
     >
 
       <div className="relative max-w-6xl mx-auto">
 
         {/* Eyebrow */}
-        <div ref={eyebrowRef} className="mb-10 opacity-0">
+        <div ref={eyebrowRef} className="mb-6 md:mb-10 opacity-0">
           <span className="inline-flex items-center gap-2 brutal-pill bg-accent-lime px-4 py-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-ink" />
             <span className="font-jetbrains text-xs font-normal text-ink">
@@ -118,59 +121,77 @@ export const WhyWeExist = () => {
         </div>
 
         {/* Headline */}
-        <div ref={headlineRef} className="mb-14 overflow-hidden">
+        <div ref={headlineRef} className="mb-8 md:mb-14 overflow-hidden">
           <div className="wwe-headline-line font-bricolage font-extrabold text-ink leading-[0.95] tracking-tight"
-            style={{ fontSize: 'clamp(2.8rem, 6vw, 56px)', letterSpacing: '-1.4px' }}>
+            style={{ fontSize: 'clamp(1.8rem, 6vw, 56px)', letterSpacing: '-1px' }}>
             The financial system
           </div>
           <div className="wwe-headline-line font-bricolage font-extrabold leading-[0.95] tracking-tight"
-            style={{ fontSize: 'clamp(2.8rem, 6vw, 56px)', letterSpacing: '-1.4px', color: '#FF5A3C' }}>
+            style={{ fontSize: 'clamp(1.8rem, 6vw, 56px)', letterSpacing: '-1px', color: '#FF5A3C' }}>
             ignores students.
           </div>
         </div>
 
         {/* Divider top */}
-        <div ref={dividerTopRef} className="w-full h-[1.6px] bg-ink/15 mb-12" />
+        <div ref={dividerTopRef} className="w-full h-[1.6px] bg-ink/15 mb-6 md:mb-12" />
 
-        {/* Problem cards grid */}
-        <div ref={cardsRef} className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-12">
+        {/* Problem cards grid (Desktop/Laptop) vs Simple List (Mobile) */}
+        <div ref={cardsRef} className="flex flex-col md:grid md:grid-cols-2 gap-2 md:gap-5 mb-6 md:mb-12">
           {PROBLEMS.map((p, i) => (
-            <div
-              key={i}
-              className="wwe-card group relative rounded-3xl p-7 overflow-hidden
-                         bg-white brutal-border
-                         hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-300"
-              style={{ boxShadow: `4px 4px 0px ${p.color}` }}
-            >
-              <div className="relative z-10">
-                {/* Emoji + accent dot */}
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-3xl">{p.emoji}</span>
-                  <span
-                    className="w-1 h-6 rounded-full"
-                    style={{ backgroundColor: p.color }}
-                  />
+            <React.Fragment key={i}>
+              {/* Mobile List Item */}
+              <div className="flex md:hidden items-start gap-4 py-3 border-b border-ink/10 last:border-0 wwe-card">
+                <div 
+                  className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border"
+                  style={{ backgroundColor: p.color + '15', borderColor: p.color }}
+                >
+                  <p.icon className="w-5 h-5" style={{ color: p.color }} strokeWidth={2} />
                 </div>
-
-                <h3 className="font-bricolage font-extrabold text-xl text-ink mb-2 leading-tight">
-                  {p.title}
-                </h3>
-                <p className="font-jakarta text-sm text-ink-muted leading-relaxed">
-                  {p.desc}
-                </p>
+                <div className="space-y-1">
+                  <h3 className="font-bricolage font-extrabold text-base text-ink leading-tight">
+                    {p.title}
+                  </h3>
+                  <p className="font-jakarta text-xs text-ink-muted leading-relaxed">
+                    {p.desc}
+                  </p>
+                </div>
               </div>
-            </div>
+
+              {/* Desktop Card Item */}
+              <div
+                className="hidden md:block wwe-card group relative rounded-3xl p-7 overflow-hidden bg-white brutal-border hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-300"
+                style={{ boxShadow: `4px 4px 0px ${p.color}` }}
+              >
+                <div className="relative z-10">
+                  {/* Icon + accent dot */}
+                  <div className="flex items-center gap-3 mb-4">
+                    <p.icon className="w-8 h-8 text-ink" strokeWidth={1.8} />
+                    <span
+                      className="w-1 h-6 rounded-full"
+                      style={{ backgroundColor: p.color }}
+                    />
+                  </div>
+
+                  <h3 className="font-bricolage font-extrabold text-xl text-ink mb-2 leading-tight">
+                    {p.title}
+                  </h3>
+                  <p className="font-jakarta text-sm text-ink-muted leading-relaxed">
+                    {p.desc}
+                  </p>
+                </div>
+              </div>
+            </React.Fragment>
           ))}
         </div>
 
         {/* Divider bottom */}
-        <div ref={dividerBotRef} className="w-full h-[1.6px] bg-ink/15 mb-16" />
+        <div ref={dividerBotRef} className="w-full h-[1.6px] bg-ink/15 mb-8 md:mb-16" />
 
         {/* Closing pivot statement */}
         <div ref={closingRef}>
           <p
             className="font-bricolage font-extrabold leading-[1.05] tracking-tight"
-            style={{ fontSize: 'clamp(2rem, 4.5vw, 56px)', letterSpacing: '-1.4px' }}
+            style={{ fontSize: 'clamp(1.6rem, 4vw, 56px)', letterSpacing: '-1px' }}
           >
             {closingWords.map((word, i) => {
               const isAccent = ['built', 'never', 'did'].includes(word.replace(/[—.,]/g, '').toLowerCase());

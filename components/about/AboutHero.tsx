@@ -6,7 +6,7 @@ import { SplitText } from '@/components/landing/shared/SplitText';
 
 export const AboutHero = () => {
   return (
-    <section className="relative pt-32 pb-24 md:pb-28 px-6 md:px-12 bg-bg-primary text-ink border-b-[1.6px] border-ink overflow-hidden">
+    <section className="relative pt-32 sm:pt-36 md:pt-44 pb-20 md:pb-28 px-4 md:px-12 bg-bg-primary text-ink border-b-[1.6px] border-ink overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
         <motion.span
           initial={{ opacity: 0, scale: 0.9 }}

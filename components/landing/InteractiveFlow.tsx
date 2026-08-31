@@ -24,15 +24,54 @@ export const InteractiveFlow = () => {
 
   const progressRef = useRef(0);
   const animationFrameRef = useRef<number | null>(null);
+  const isEscapingRef = useRef(false);
+
+  const escapeUpward = () => {
+    isEscapingRef.current = true;
+    setIsLocked(false);
+    const topOfSection = outerContainerRef.current?.offsetTop || 0;
+    if (lenis) {
+      lenis.start();
+      lenis.scrollTo(topOfSection - 100, { duration: 0.8 });
+    } else {
+      window.scrollTo({
+        top: topOfSection - 100,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   // 1. Lock/Unlock scrolling side effects
   useEffect(() => {
     const preventScroll = (e: Event) => {
+      if (e instanceof WheelEvent && e.deltaY < 0) {
+        escapeUpward();
+        return;
+      }
+      e.preventDefault();
+    };
+
+    let touchStartY = 0;
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      const touchY = e.touches[0].clientY;
+      const diffY = touchY - touchStartY;
+      if (diffY > 15) { // Dragged down (scrolling UP)
+        escapeUpward();
+        return;
+      }
       e.preventDefault();
     };
 
     const preventKeys = (e: KeyboardEvent) => {
       const keys = ['Space', 'ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'End', 'Home'];
+      if (e.code === 'ArrowUp' || e.code === 'PageUp' || e.code === 'Home') {
+        escapeUpward();
+        return;
+      }
       if (keys.includes(e.code)) {
         e.preventDefault();
       }
@@ -40,14 +79,16 @@ export const InteractiveFlow = () => {
 
     if (isLocked) {
       window.addEventListener('wheel', preventScroll, { passive: false });
-      window.addEventListener('touchmove', preventScroll, { passive: false });
+      window.addEventListener('touchstart', handleTouchStart, { passive: true });
+      window.addEventListener('touchmove', handleTouchMove, { passive: false });
       window.addEventListener('keydown', preventKeys, { passive: false });
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
       lenis?.stop();
     } else {
       window.removeEventListener('wheel', preventScroll);
-      window.removeEventListener('touchmove', preventScroll);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('keydown', preventKeys);
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
@@ -56,7 +97,8 @@ export const InteractiveFlow = () => {
 
     return () => {
       window.removeEventListener('wheel', preventScroll);
-      window.removeEventListener('touchmove', preventScroll);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('keydown', preventKeys);
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
@@ -73,6 +115,7 @@ export const InteractiveFlow = () => {
       start: 'top top',
       end: 'top+=10 top',
       onEnter: () => {
+        if (isEscapingRef.current) return;
         if (!isBooted) {
           if (lenis && outerContainerRef.current) {
             lenis.scrollTo(outerContainerRef.current, { immediate: true });
@@ -86,6 +129,7 @@ export const InteractiveFlow = () => {
         }
       },
       onEnterBack: () => {
+        if (isEscapingRef.current) return;
         if (!isBooted) {
           if (lenis && outerContainerRef.current) {
             lenis.scrollTo(outerContainerRef.current, { immediate: true });
@@ -109,6 +153,11 @@ export const InteractiveFlow = () => {
   useLenis((lenisInstance) => {
     if (!isBooted && !isLocked) {
       const topOfSection = outerContainerRef.current?.offsetTop || 0;
+      if (lenisInstance.scroll < topOfSection - 10) {
+        isEscapingRef.current = false;
+      }
+      if (isEscapingRef.current) return;
+
       if (lenisInstance.scroll >= topOfSection - 10) {
         if (outerContainerRef.current) {
           lenisInstance.scrollTo(outerContainerRef.current, { immediate: true });
