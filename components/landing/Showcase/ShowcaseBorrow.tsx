@@ -338,7 +338,7 @@ export const ShowcaseBorrow = () => {
           <div className="md:col-span-4 flex flex-col gap-8">
             <div className="borrow-showcase-item flex-1 bg-ink text-white brutal-card p-8 flex flex-col justify-between relative overflow-hidden group" style={{ boxShadow: '6px 6px 0px #7B5CFF' }}>
               <img 
-                src="/images/sticker3.png" 
+                src="/images/sticker3.webp" 
                 alt="Sticker" 
                 className="absolute right-2 md:right-4 top-[38%] -translate-y-1/2 w-28 md:w-36 h-auto object-contain pointer-events-none opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 z-0" 
               />
@@ -347,7 +347,7 @@ export const ShowcaseBorrow = () => {
             </div>
             <div className="borrow-showcase-item flex-1 bg-accent-lime text-ink brutal-card p-8 flex flex-col justify-between relative overflow-hidden group">
               <img 
-                src="/images/skincare-promo.png" 
+                src="/images/skincare-promo.webp" 
                 alt="Promotion" 
                 className="absolute right-2 md:right-4 top-[30%] -translate-y-1/2 w-36 md:w-44 h-auto object-contain pointer-events-none opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 z-0" 
               />

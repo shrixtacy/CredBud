@@ -68,7 +68,7 @@ export const StackPanelEarn = () => {
                 <span className="font-bricolage font-extrabold text-accent-purple text-xl md:text-2xl z-10 shrink-0">Internships</span>
                 <div className="flex-1 flex items-center justify-center my-1 relative min-h-0 overflow-hidden">
                   <img 
-                    src="/images/internships.png" 
+                    src="/images/internships.webp" 
                     alt="Internships" 
                     className="w-full h-full object-contain scale-110 md:scale-140 drop-shadow-sm pointer-events-none transition-transform duration-300" 
                   />

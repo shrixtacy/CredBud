@@ -27,7 +27,7 @@ export const HowItWorksHero = () => {
       {/* Background Campus Scene Image (100% Full Visibility) */}
       <div className="absolute inset-0 w-full h-full z-0 select-none pointer-events-none">
         <img
-          src="/how-it-works-campus-bg-v2.png"
+          src="/how-it-works-campus-bg-v2.webp"
           alt="Campus life background"
           className="w-full h-full object-cover object-[25%_center] md:object-center opacity-100"
         />

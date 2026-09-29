@@ -101,7 +101,7 @@ export const FooterShutter = () => {
       {/* Footer Elements Grass & Coins bottom border */}
       <div className="absolute bottom-0 left-0 w-full pointer-events-none select-none z-20">
         <img
-          src="/footer-elements.png"
+          src="/footer-elements.webp"
           alt=""
           aria-hidden="true"
           className="w-full h-auto object-contain object-bottom"

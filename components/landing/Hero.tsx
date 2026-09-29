@@ -261,7 +261,7 @@ export const Hero = () => {
       {/* Pinned Image at the bottom of the Hero Section */}
       <div className="absolute bottom-0 left-0 w-full pointer-events-none select-none z-10">
         <img
-          src="/footer-elements.png"
+          src="/footer-elements.webp"
           alt=""
           aria-hidden="true"
           className="w-full h-auto object-contain object-bottom"

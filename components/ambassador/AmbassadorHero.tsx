@@ -27,7 +27,7 @@ export const AmbassadorHero = () => {
       {/* Background Campus Illustration Image */}
       <div className="absolute inset-0 w-full h-full z-0 select-none pointer-events-none">
         <img
-          src="/ambassador-hero-bg.png"
+          src="/ambassador-hero-bg.webp"
           alt="Campus ambassador background"
           className="w-full h-full object-cover object-[25%_top] md:object-top opacity-100"
         />

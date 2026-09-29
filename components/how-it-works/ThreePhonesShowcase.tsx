@@ -10,7 +10,7 @@ export const ThreePhonesShowcase = () => {
       {/* Container for Single 3-Phone Showcase PNG */}
       <div className="relative w-full max-w-[620px] aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-[#0D1B2A]/10 bg-[#FAF7F2] group hover:scale-[1.02] transition-transform duration-500">
         <Image
-          src="/images/app-screens/three_phones_hero.png"
+          src="/images/app-screens/three_phones_hero.webp"
           alt="CreditBuddy 3-Phone App OS Showcase"
           fill
           className="object-cover object-center"

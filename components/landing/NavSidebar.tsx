@@ -68,7 +68,7 @@ export const NavSidebar = () => {
         className="fixed top-5 left-6 z-[10001] w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-white brutal-border brutal-shadow-sm flex items-center justify-center hover:scale-105 active:scale-95 transition-transform duration-200 cursor-pointer select-none"
       >
         <img 
-          src="/images/creditbuddy-logo.png" 
+          src="/images/creditbuddy-logo.webp" 
           alt="CreditBuddy Logo" 
           className="w-8 h-8 sm:w-9 sm:h-9 object-contain" 
         />
@@ -121,8 +121,8 @@ export const NavSidebar = () => {
           {/* Header */}
           <div className="flex items-center justify-between px-8 pt-8 pb-6">
             <div className="flex items-center gap-3">
-              <img src="/images/creditbuddy-logo.png" alt="CreditBuddy Logo" className="h-8 w-auto object-contain" />
-              <img src="/images/creditbuddy-text-logo.png" alt="CreditBuddy" className="h-6 w-auto object-contain" />
+              <img src="/images/creditbuddy-logo.webp" alt="CreditBuddy Logo" className="h-8 w-auto object-contain" />
+              <img src="/images/creditbuddy-text-logo.webp" alt="CreditBuddy" className="h-6 w-auto object-contain" />
             </div>
             <button
               onClick={close}

@@ -49,7 +49,7 @@ export const StudentsHero = () => {
         {/* DESKTOP ONLY: Left side character image - Girl */}
         <div className="left-hero-girl hidden lg:block absolute lg:top-1/2 lg:-translate-y-[54%] lg:left-[-4rem] xl:left-[-7.5rem] 2xl:left-[-11rem] lg:w-[340px] xl:w-[460px] 2xl:w-[520px] pointer-events-none z-20">
           <img
-            src="/student-hero-character.png"
+            src="/student-hero-character.webp"
             alt="CreditBuddy Student Character Girl"
             className="w-full h-auto object-contain drop-shadow-2xl animate-float-gentle"
           />
@@ -58,7 +58,7 @@ export const StudentsHero = () => {
         {/* DESKTOP ONLY: Right side character image - Boy */}
         <div className="right-hero-boy hidden lg:block absolute lg:top-1/2 lg:-translate-y-[28%] lg:right-[-4rem] xl:right-[-7.5rem] 2xl:right-[-11rem] lg:w-[340px] xl:w-[460px] 2xl:w-[520px] pointer-events-none z-20">
           <img
-            src="/student-hero-boy.png"
+            src="/student-hero-boy.webp"
             alt="CreditBuddy Student Character Boy"
             className="w-full h-auto object-contain drop-shadow-2xl animate-float-gentle"
             style={{ transform: 'rotate(180deg)', animationDelay: '1.5s' }}
@@ -101,14 +101,14 @@ export const StudentsHero = () => {
         <div className="w-full flex items-end justify-between mt-8 sm:mt-10 lg:hidden px-2 z-20 pointer-events-none max-w-md mx-auto">
           <div className="left-hero-girl w-[130px] sm:w-[160px]">
             <img
-              src="/student-hero-character.png"
+              src="/student-hero-character.webp"
               alt="CreditBuddy Student Character Girl"
               className="w-full h-auto object-contain drop-shadow-xl animate-float-gentle"
             />
           </div>
           <div className="right-hero-boy w-[130px] sm:w-[160px]">
             <img
-              src="/student-hero-boy.png"
+              src="/student-hero-boy.webp"
               alt="CreditBuddy Student Character Boy"
               className="w-full h-auto object-contain drop-shadow-xl animate-float-gentle"
               style={{ transform: 'rotate(180deg)', animationDelay: '1.5s' }}

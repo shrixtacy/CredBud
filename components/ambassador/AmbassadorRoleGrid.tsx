@@ -75,7 +75,7 @@ export const AmbassadorRoleGrid = () => {
       {/* Background SVG Paper Elements */}
       <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0 opacity-25 overflow-hidden">
         <img
-          src="/creditbuddy-elements.svg"
+          src="/creditbuddy-elements.webp"
           alt="Background paper texture elements"
           className="w-full h-full object-cover object-center"
         />
