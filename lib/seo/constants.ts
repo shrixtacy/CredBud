@@ -43,10 +43,7 @@ export const SITE_TAGLINE = "India's Student-First Financial Ecosystem" as const
  *   college students, India, micro-loans, campus ambassador
  */
 export const SITE_DESCRIPTION =
-  "CreditBuddy is India's pioneering student-first financial ecosystem. " +
-  'Get instant micro-credit, earn through campus gigs, build your CIBIL ' +
-  'score early, and master financial literacy — all designed exclusively ' +
-  'for Indian college students.' as const;
+  "CreditBuddy is India's pioneering student-first financial ecosystem. Get instant micro-credit, earn through campus gigs, build your CIBIL score early, and master financial literacy — all designed exclusively for Indian college students.";
 
 // ---------------------------------------------------------------------------
 // Company Registration Details
