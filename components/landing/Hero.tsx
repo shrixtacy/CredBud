@@ -140,11 +140,11 @@ export const Hero = () => {
       {/* Full-screen Inner Content that bulges/tilts */}
       <div
         ref={screenInnerRef}
-        className="w-full h-full relative flex flex-col items-center justify-center p-6 md:p-12 lg:px-16 z-20 select-none text-center pb-28 md:pb-40"
+        className="w-full h-full relative flex flex-col items-center justify-center p-6 md:p-12 lg:px-16 z-20 select-none text-center pt-24 md:pt-28 pb-20 md:pb-32"
         style={{ transformStyle: 'preserve-3d' }}
       >
         {/* Main Text Content Column */}
-        <div className="flex flex-col items-center justify-center max-w-5xl z-30 w-full -mt-14 md:-mt-24" style={{ transform: 'translateZ(80px)' }}>
+        <div className="flex flex-col items-center justify-center max-w-5xl z-30 w-full mt-4 sm:mt-6 md:mt-8" style={{ transform: 'translateZ(80px)' }}>
           
           {/* Eyebrow Badge */}
           <div 

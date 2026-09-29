@@ -1,17 +1,74 @@
-import type { Metadata } from 'next';
+/**
+ * @fileoverview Terms & Conditions page for CreditBuddy Partners Pvt Ltd.
+ *
+ * Legal page covering acceptance of terms, eligibility, financial services,
+ * user responsibilities, and grievance redressal.
+ *
+ * SEO priority: 0.3 — required legal page, low crawl priority.
+ *
+ * @see {@link file:///d:/Vibe%20projects/CredBud/app/sitemap.ts} — Sitemap entry
+ */
+
 import { SmoothScroll } from '@/components/landing/shared/SmoothScroll';
 import { GrainOverlay } from '@/components/landing/shared/GrainOverlay';
 import { FooterShutter } from '@/components/landing/Footer/FooterShutter';
+import { buildMetadata, generateWebPage } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Terms & Conditions | CreditBuddy Partners Pvt Ltd',
-  description: 'Terms of service and user agreements for CreditBuddy Partners Private Limited.',
-};
+// ─── SEO Metadata ────────────────────────────────────────────────────────────
 
+export const metadata = buildMetadata({
+  title: 'Terms & Conditions — User Agreement & Service Terms',
+  description:
+    'Terms of service and user agreements for CreditBuddy Partners Private Limited. ' +
+    'Covers eligibility, student verification, lending partner compliance with RBI guidelines, ' +
+    'user responsibilities, repayment terms, and grievance redressal.',
+  path: '/terms',
+  keywords: [
+    'CreditBuddy terms and conditions',
+    'CreditBuddy user agreement',
+    'student loan terms India',
+    'CreditBuddy service terms',
+    'CreditBuddy Partners Private Limited terms',
+    'student lending terms India',
+    'micro loan terms and conditions',
+    'CreditBuddy eligibility criteria',
+    'student verification requirements',
+    'RBI compliance student lending',
+  ],
+});
+
+// ─── Structured Data ─────────────────────────────────────────────────────────
+
+const webPageJsonLd = JSON.stringify(
+  generateWebPage({
+    title: 'Terms & Conditions — CreditBuddy',
+    description: 'Terms of service and user agreements for CreditBuddy Partners Private Limited.',
+    path: '/terms',
+    breadcrumbs: [
+      { name: 'Home', href: '/' },
+      { name: 'Terms & Conditions', href: '/terms' },
+    ],
+  }),
+);
+
+// ─── Page Component ──────────────────────────────────────────────────────────
+
+/**
+ * Terms & Conditions page component.
+ *
+ * Renders the legal agreement with section-by-section content
+ * and company registration details.
+ */
 export default function TermsPage() {
   return (
     <SmoothScroll>
       <GrainOverlay />
+
+      {/* Page-level structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: webPageJsonLd }}
+      />
 
       <main className="relative w-full block bg-[#FAF7F2] text-ink pt-28 pb-20 px-6 md:px-12">
         <div className="max-w-4xl mx-auto space-y-8">

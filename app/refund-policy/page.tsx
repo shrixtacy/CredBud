@@ -1,17 +1,74 @@
-import type { Metadata } from 'next';
+/**
+ * @fileoverview Refund Policy page for CreditBuddy Partners Pvt Ltd.
+ *
+ * Legal page covering fee refunds, loan disbursal repayments,
+ * and support / claims procedures.
+ *
+ * SEO priority: 0.3 — required legal page, low crawl priority.
+ *
+ * @see {@link file:///d:/Vibe%20projects/CredBud/app/sitemap.ts} — Sitemap entry
+ */
+
 import { SmoothScroll } from '@/components/landing/shared/SmoothScroll';
 import { GrainOverlay } from '@/components/landing/shared/GrainOverlay';
 import { FooterShutter } from '@/components/landing/Footer/FooterShutter';
+import { buildMetadata, generateWebPage } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Refund Policy | CreditBuddy Partners Pvt Ltd',
-  description: 'Refund policy and cancellation terms for CreditBuddy Partners Private Limited.',
-};
+// ─── SEO Metadata ────────────────────────────────────────────────────────────
 
+export const metadata = buildMetadata({
+  title: 'Refund Policy — Cancellation & Refund Terms',
+  description:
+    'Refund policy and cancellation terms for CreditBuddy Partners Private Limited. ' +
+    'Covers fee refunds for system failures, excess repayment credits, and the process ' +
+    'to initiate refund claims with transaction reference IDs.',
+  path: '/refund-policy',
+  keywords: [
+    'CreditBuddy refund policy',
+    'CreditBuddy cancellation policy',
+    'student loan refund India',
+    'CreditBuddy fee refund',
+    'excess repayment refund',
+    'CreditBuddy Partners Private Limited refund',
+    'micro loan refund policy',
+    'student lending refund process',
+    'processing fee refund CreditBuddy',
+    'loan overpayment refund India',
+  ],
+});
+
+// ─── Structured Data ─────────────────────────────────────────────────────────
+
+const webPageJsonLd = JSON.stringify(
+  generateWebPage({
+    title: 'Refund Policy — CreditBuddy',
+    description: 'Refund policy and cancellation terms for CreditBuddy Partners Private Limited.',
+    path: '/refund-policy',
+    breadcrumbs: [
+      { name: 'Home', href: '/' },
+      { name: 'Refund Policy', href: '/refund-policy' },
+    ],
+  }),
+);
+
+// ─── Page Component ──────────────────────────────────────────────────────────
+
+/**
+ * Refund Policy page component.
+ *
+ * Renders the refund and cancellation policy document with
+ * support contact details.
+ */
 export default function RefundPolicyPage() {
   return (
     <SmoothScroll>
       <GrainOverlay />
+
+      {/* Page-level structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: webPageJsonLd }}
+      />
 
       <main className="relative w-full block bg-[#FAF7F2] text-ink pt-28 pb-20 px-6 md:px-12">
         <div className="max-w-4xl mx-auto space-y-8">

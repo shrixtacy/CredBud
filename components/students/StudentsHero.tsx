@@ -27,7 +27,7 @@ export const StudentsHero = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative pt-20 pb-44 sm:pb-48 lg:pt-32 lg:pb-20 px-6 md:px-12 bg-bg-primary text-ink border-b-[1.6px] border-ink overflow-hidden">
+    <section ref={containerRef} className="relative pt-28 sm:pt-36 lg:pt-32 pb-8 sm:pb-12 lg:pb-20 px-6 md:px-12 bg-bg-primary text-ink border-b-[1.6px] border-ink overflow-hidden">
       {/* Soft background ambient glow behind left character */}
       <div className="absolute bottom-0 left-0 lg:top-1/2 lg:-translate-y-1/2 w-64 h-64 lg:w-80 lg:h-80 bg-accent-lime/20 rounded-full blur-[80px] pointer-events-none" />
 
@@ -44,10 +44,10 @@ export const StudentsHero = () => {
         </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto relative flex flex-col items-center text-center pb-24 sm:pb-28 lg:pb-0">
+      <div className="max-w-7xl mx-auto relative flex flex-col items-center text-center">
         
-        {/* Left side character image - Girl */}
-        <div className="left-hero-girl absolute bottom-[-165px] sm:bottom-[-195px] left-[-22px] sm:left-[-10px] lg:top-1/2 lg:bottom-auto lg:-translate-y-[54%] lg:left-[-4rem] xl:left-[-7.5rem] 2xl:left-[-11rem] w-[145px] sm:w-[190px] md:w-[240px] lg:w-[340px] xl:w-[460px] 2xl:w-[520px] pointer-events-none z-20">
+        {/* DESKTOP ONLY: Left side character image - Girl */}
+        <div className="left-hero-girl hidden lg:block absolute lg:top-1/2 lg:-translate-y-[54%] lg:left-[-4rem] xl:left-[-7.5rem] 2xl:left-[-11rem] lg:w-[340px] xl:w-[460px] 2xl:w-[520px] pointer-events-none z-20">
           <img
             src="/student-hero-character.png"
             alt="CreditBuddy Student Character Girl"
@@ -55,8 +55,8 @@ export const StudentsHero = () => {
           />
         </div>
 
-        {/* Right side character image - Boy */}
-        <div className="right-hero-boy absolute bottom-[-165px] sm:bottom-[-195px] right-[-22px] sm:right-[-10px] lg:top-1/2 lg:bottom-auto lg:-translate-y-[28%] lg:right-[-4rem] xl:right-[-7.5rem] 2xl:right-[-11rem] w-[145px] sm:w-[190px] md:w-[240px] lg:w-[340px] xl:w-[460px] 2xl:w-[520px] pointer-events-none z-20">
+        {/* DESKTOP ONLY: Right side character image - Boy */}
+        <div className="right-hero-boy hidden lg:block absolute lg:top-1/2 lg:-translate-y-[28%] lg:right-[-4rem] xl:right-[-7.5rem] 2xl:right-[-11rem] lg:w-[340px] xl:w-[460px] 2xl:w-[520px] pointer-events-none z-20">
           <img
             src="/student-hero-boy.png"
             alt="CreditBuddy Student Character Boy"
@@ -95,6 +95,25 @@ export const StudentsHero = () => {
           <button className="px-8 py-4 bg-ink text-bg-primary font-bricolage font-bold text-base brutal-pill brutal-shadow-purple hover:scale-105 transition-transform cursor-pointer">
             Get Started Free ↗
           </button>
+        </div>
+
+        {/* MOBILE ONLY: Character PNGs placed below all texts */}
+        <div className="w-full flex items-end justify-between mt-8 sm:mt-10 lg:hidden px-2 z-20 pointer-events-none max-w-md mx-auto">
+          <div className="left-hero-girl w-[130px] sm:w-[160px]">
+            <img
+              src="/student-hero-character.png"
+              alt="CreditBuddy Student Character Girl"
+              className="w-full h-auto object-contain drop-shadow-xl animate-float-gentle"
+            />
+          </div>
+          <div className="right-hero-boy w-[130px] sm:w-[160px]">
+            <img
+              src="/student-hero-boy.png"
+              alt="CreditBuddy Student Character Boy"
+              className="w-full h-auto object-contain drop-shadow-xl animate-float-gentle"
+              style={{ transform: 'rotate(180deg)', animationDelay: '1.5s' }}
+            />
+          </div>
         </div>
 
       </div>
