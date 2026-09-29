@@ -1,17 +1,75 @@
-import type { Metadata } from 'next';
+/**
+ * @fileoverview Privacy Policy page for CreditBuddy Partners Pvt Ltd.
+ *
+ * Legal page covering data collection, usage, security, and contact
+ * information for the Data Protection Officer.
+ *
+ * SEO priority: 0.3 — required legal page, low crawl priority.
+ * Robots: indexed (required for Google compliance signals).
+ *
+ * @see {@link file:///d:/Vibe%20projects/CredBud/app/sitemap.ts} — Sitemap entry
+ */
+
 import { SmoothScroll } from '@/components/landing/shared/SmoothScroll';
 import { GrainOverlay } from '@/components/landing/shared/GrainOverlay';
 import { FooterShutter } from '@/components/landing/Footer/FooterShutter';
+import { buildMetadata, generateWebPage } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Privacy Policy | CreditBuddy Partners Pvt Ltd',
-  description: 'Privacy policy and data protection guidelines for CreditBuddy Partners Private Limited.',
-};
+// ─── SEO Metadata ────────────────────────────────────────────────────────────
 
+export const metadata = buildMetadata({
+  title: 'Privacy Policy — Data Protection & Privacy Guidelines',
+  description:
+    'Privacy policy of CreditBuddy Partners Private Limited. Learn how we collect, use, ' +
+    'and protect your personal data. 256-bit encryption, no third-party data sales, ' +
+    'and full GDPR/IT Act compliance.',
+  path: '/privacy',
+  keywords: [
+    'CreditBuddy privacy policy',
+    'CreditBuddy data protection',
+    'student data privacy India',
+    'CreditBuddy Partners Private Limited privacy',
+    'data security student lending',
+    'student loan data protection',
+    'fintech privacy policy India',
+    'CreditBuddy GDPR compliance',
+    'student personal data security',
+    'data deletion request CreditBuddy',
+  ],
+});
+
+// ─── Structured Data ─────────────────────────────────────────────────────────
+
+const webPageJsonLd = JSON.stringify(
+  generateWebPage({
+    title: 'Privacy Policy — CreditBuddy',
+    description: 'Privacy policy and data protection guidelines for CreditBuddy Partners Private Limited.',
+    path: '/privacy',
+    breadcrumbs: [
+      { name: 'Home', href: '/' },
+      { name: 'Privacy Policy', href: '/privacy' },
+    ],
+  }),
+);
+
+// ─── Page Component ──────────────────────────────────────────────────────────
+
+/**
+ * Privacy Policy page component.
+ *
+ * Renders the privacy policy document with legal entity details
+ * and section-by-section content.
+ */
 export default function PrivacyPage() {
   return (
     <SmoothScroll>
       <GrainOverlay />
+
+      {/* Page-level structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: webPageJsonLd }}
+      />
 
       <main className="relative w-full block bg-[#FAF7F2] text-ink pt-28 pb-20 px-6 md:px-12">
         <div className="max-w-4xl mx-auto space-y-8">

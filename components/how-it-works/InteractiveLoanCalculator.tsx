@@ -173,11 +173,12 @@ export const InteractiveLoanCalculator = () => {
         </div>
       </div>
 
-      {/* 2. Interactive Calculator Dual-Panel Widget (Figma Screenshot 1) */}
-      <div className="calc-widget-container w-full grid grid-cols-1 lg:grid-cols-12 brutal-card overflow-hidden" style={{ boxShadow: '8px 8px 0px #14100F' }}>
+      {/* 2. Interactive Calculator Widget */}
+      {/* Desktop View (>= lg) */}
+      <div className="calc-widget-container hidden lg:grid w-full grid-cols-12 brutal-card overflow-hidden" style={{ boxShadow: '8px 8px 0px #14100F' }}>
         
         {/* Left Panel: Purple #7B5CFF */}
-        <div className="lg:col-span-6 bg-accent-purple p-8 md:p-12 text-white flex flex-col justify-between space-y-8">
+        <div className="col-span-6 bg-accent-purple p-8 md:p-12 text-white flex flex-col justify-between space-y-8">
           <div>
             <span className="font-jetbrains text-xs font-normal border border-white/30 rounded-full px-4 py-1.5 inline-flex items-center gap-2 mb-6">
               ✦ Instant estimate
@@ -244,7 +245,7 @@ export const InteractiveLoanCalculator = () => {
         </div>
 
         {/* Right Panel: Lime #C8FF3D */}
-        <div className="lg:col-span-6 bg-accent-lime p-8 md:p-12 text-ink flex flex-col justify-between space-y-8">
+        <div className="col-span-6 bg-accent-lime p-8 md:p-12 text-ink flex flex-col justify-between space-y-8">
           <div>
             <span className="font-jetbrains text-xs font-normal text-ink-muted uppercase tracking-widest block mb-2">
               Your monthly repayment
@@ -275,6 +276,67 @@ export const InteractiveLoanCalculator = () => {
           </div>
         </div>
 
+      </div>
+
+      {/* Mobile Only Card View (< lg) */}
+      <div 
+        className="calc-widget-container lg:hidden w-full max-w-md mx-auto bg-accent-purple p-6 text-white rounded-[28px] brutal-border border-2 border-black" 
+        style={{ boxShadow: '6px 6px 0px #14100F' }}
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between mb-6">
+          <h3 className="font-bricolage text-2xl font-bold text-white tracking-tight">
+            Estimate Advance
+          </h3>
+          <span className="font-jetbrains text-xs text-white/90 bg-white/10 border border-white/25 rounded-full px-3.5 py-1 tracking-wide">
+            ~90s approval
+          </span>
+        </div>
+
+        {/* Amount Row */}
+        <div className="flex items-center justify-between mb-2">
+          <span className="font-jetbrains text-xs font-bold uppercase tracking-wider text-white/70">
+            AMOUNT
+          </span>
+          <span className="font-jetbrains text-base font-bold text-white tracking-wide">
+            ₹{amount.toLocaleString('en-IN')}
+          </span>
+        </div>
+
+        {/* Slider */}
+        <div className="mb-6">
+          <input
+            type="range"
+            min="2000"
+            max="50000"
+            step="1000"
+            value={amount}
+            onChange={(e) => setAmount(Number(e.target.value))}
+            className="w-full h-2.5 bg-white/20 rounded-lg appearance-none cursor-pointer accent-accent-lime"
+          />
+        </div>
+
+        {/* Repayment Glass Box */}
+        <div className="bg-white/10 border border-white/20 rounded-2xl px-4 py-4 flex items-center justify-between mb-6">
+          <span className="font-jetbrains text-sm font-bold text-white">
+            Repayment
+          </span>
+          <span className="font-jetbrains text-lg font-bold text-accent-lime">
+            ₹{monthlyRepayment.toLocaleString('en-IN')}/mo
+          </span>
+          <span className="font-jetbrains text-xs text-white/70">
+            ({term} mos)
+          </span>
+        </div>
+
+        {/* Apply Now Button */}
+        <button
+          suppressHydrationWarning
+          className="w-full py-3.5 bg-accent-lime text-ink font-bricolage font-extrabold text-lg rounded-full border-2 border-black transition-transform active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2"
+          style={{ boxShadow: '2px 2px 0px #14100F' }}
+        >
+          Apply Now →
+        </button>
       </div>
 
     </section>

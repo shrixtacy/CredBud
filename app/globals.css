@@ -41,6 +41,33 @@ body {
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
+/* ── Custom Scrollbar ── */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #C8FF3D transparent;
+}
+
+/* WebKit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C8FF3D;
+  border-radius: 0;
+  min-height: 120px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b8ef2d;
+}
+
 /* ── Font Utility Classes ── */
 .font-bricolage {
   font-family: 'Bricolage Grotesque', sans-serif;

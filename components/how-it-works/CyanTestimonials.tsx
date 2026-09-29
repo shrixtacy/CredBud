@@ -52,14 +52,6 @@ export const CyanTestimonials = () => {
           scrollTrigger: { trigger: containerRef.current, start: 'top 75%' }
         }
       );
-
-      gsap.fromTo('.cta-big-card',
-        { y: 80, opacity: 0, scale: 0.92 },
-        {
-          y: 0, opacity: 1, scale: 1, duration: 0.9, ease: 'back.out(1.5)',
-          scrollTrigger: { trigger: '.cta-big-card', start: 'top 80%' }
-        }
-      );
     }, containerRef);
 
     return () => ctx.revert();
@@ -67,7 +59,7 @@ export const CyanTestimonials = () => {
 
   return (
     <section ref={containerRef} className="w-full">
-      {/* 1. Cyan Testimonials Strip (Figma Screenshot 4 Top) */}
+      {/* Cyan Testimonials Strip */}
       <div className="bg-accent-cyan py-20 md:py-24 px-6 md:px-12 w-full text-ink">
         <div className="max-w-7xl mx-auto">
           
@@ -102,40 +94,6 @@ export const CyanTestimonials = () => {
                 </div>
               </div>
             ))}
-          </div>
-
-        </div>
-      </div>
-
-      {/* 2. Big Lime Final CTA Card (Figma Screenshot 4 Bottom) */}
-      <div className="py-16 md:py-24 px-6 md:px-12 bg-bg-primary w-full">
-        <div className="cta-big-card max-w-6xl mx-auto bg-accent-lime brutal-card p-10 md:p-20 text-center relative overflow-hidden" style={{ boxShadow: '8px 8px 0px #14100F' }}>
-          
-          {/* Corner Circles */}
-          <div className="absolute -top-12 -left-12 w-32 h-32 rounded-full bg-accent-coral brutal-border pointer-events-none" />
-          <div className="absolute -bottom-16 -right-16 w-44 h-44 rounded-full bg-accent-purple brutal-border pointer-events-none" />
-
-          <div className="relative z-10 max-w-3xl mx-auto">
-            <span className="font-jetbrains text-xs font-normal text-ink uppercase tracking-widest block mb-4">
-              no salary slip • no credit history • no stress
-            </span>
-            
-            <h2 className="font-bricolage text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-ink mb-6">
-              Your dreams can&apos;t wait.
-            </h2>
-            
-            <p className="font-jakarta text-ink-muted text-base md:text-lg max-w-xl mx-auto mb-10">
-              Join 62,000+ students borrowing smart, earning steady, and building a future they own.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button suppressHydrationWarning className="w-full sm:w-auto px-8 py-4 bg-ink text-bg-primary font-bricolage font-bold text-base brutal-pill brutal-shadow-purple transition-transform hover:scale-105 cursor-pointer">
-                Get started free ↗
-              </button>
-              <button suppressHydrationWarning className="w-full sm:w-auto px-8 py-4 bg-white text-ink font-bricolage font-bold text-base brutal-pill transition-transform hover:scale-105 cursor-pointer">
-                Talk to us
-              </button>
-            </div>
           </div>
 
         </div>

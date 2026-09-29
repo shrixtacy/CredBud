@@ -26,11 +26,6 @@ export const IntroSequence = () => {
         onComplete: () => {
           document.body.style.overflow = '';
           lenis?.start();
-          // Revert GSAP while DOM nodes still exist, THEN remove from React tree
-          if (ctxRef.current) {
-            ctxRef.current.revert();
-            ctxRef.current = null;
-          }
           setDone(true);
         },
       });
@@ -54,7 +49,6 @@ export const IntroSequence = () => {
     return () => {
       document.body.style.overflow = '';
       lenis?.start();
-      // Only revert if onComplete hasn't already done so
       if (ctxRef.current) {
         ctxRef.current.revert();
         ctxRef.current = null;
