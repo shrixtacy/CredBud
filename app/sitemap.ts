@@ -4,122 +4,126 @@
  * Next.js 15 automatically serves this at `/sitemap.xml` when a
  * `sitemap.ts` file exists in the `app/` directory.
  *
- * The sitemap prioritises pages based on their role:
- *   - Home / main product pages → priority 1.0 – 0.9
- *   - Secondary pages (Blog, About, Contact) → priority 0.7 – 0.8
- *   - Legal / policy pages → priority 0.3
+ * Priority tiers:
+ *   1.0  → Home (canonical landing)
+ *   0.9  → Core product pages (How It Works, Students)
+ *   0.8  → Community & brand pages (Ambassador, About)
+ *   0.7  → Discovery / trust pages (Blog, Contact)
+ *   0.3  → Legal / policy pages (rarely change)
  *
- * Change frequencies are set based on expected content update cadence.
+ * Note: `alternates.canonical` is NOT part of `MetadataRoute.Sitemap`
+ * (it only supports `alternates.languages` for hreflang).
+ * Canonical URLs are already implied by the `url` field in each entry
+ * and are set per-page via `buildMetadata()` → `alternates.canonical`.
  *
  * @see https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap
  */
 
 import type { MetadataRoute } from 'next';
-import { SITE_URL } from '@/lib/seo';
+import { SITE_URL, DEFAULT_OG_IMAGE } from '@/lib/seo';
 
-/**
- * Structured route definition for sitemap generation.
- */
-interface SitemapEntry {
-  /** Relative URL path. */
-  path: string;
-  /** How frequently the page is likely to change. */
-  changeFrequency:
-    | 'always'
-    | 'hourly'
-    | 'daily'
-    | 'weekly'
-    | 'monthly'
-    | 'yearly'
-    | 'never';
-  /** Priority relative to other pages (0.0 – 1.0). */
-  priority: number;
-  /** ISO 8601 last modification date. */
-  lastModified: string;
-}
+// ─── Helpers ──────────────────────────────────────────────────────────────────
 
-/**
- * All routes that should appear in the sitemap.
- *
- * Ordered by priority (descending).  The first 7 entries map directly
- * to the main navbar items; the last 3 are footer-linked legal pages.
- */
-const ROUTES: SitemapEntry[] = [
-  // ── Primary Navbar Routes ───────────────────────────────────────
-  {
-    path: '/',
-    changeFrequency: 'weekly',
-    priority: 1.0,
-    lastModified: '2026-09-28',
-  },
-  {
-    path: '/how-it-works',
-    changeFrequency: 'monthly',
-    priority: 0.9,
-    lastModified: '2026-09-28',
-  },
-  {
-    path: '/students',
-    changeFrequency: 'monthly',
-    priority: 0.9,
-    lastModified: '2026-09-28',
-  },
-  {
-    path: '/ambassador',
-    changeFrequency: 'monthly',
-    priority: 0.8,
-    lastModified: '2026-09-28',
-  },
-  {
-    path: '/blog',
-    changeFrequency: 'weekly',
-    priority: 0.7,
-    lastModified: '2026-09-28',
-  },
-  {
-    path: '/about',
-    changeFrequency: 'monthly',
-    priority: 0.8,
-    lastModified: '2026-09-28',
-  },
-  {
-    path: '/contact',
-    changeFrequency: 'yearly',
-    priority: 0.7,
-    lastModified: '2026-09-28',
-  },
+/** Absolute URL builder — no double-slash on root. */
+const url = (path: string): string =>
+  path === '/' ? SITE_URL : `${SITE_URL}${path}`;
 
-  // ── Legal / Policy Pages ────────────────────────────────────────
-  {
-    path: '/terms',
-    changeFrequency: 'yearly',
-    priority: 0.3,
-    lastModified: '2026-08-01',
-  },
-  {
-    path: '/privacy',
-    changeFrequency: 'yearly',
-    priority: 0.3,
-    lastModified: '2026-08-01',
-  },
-  {
-    path: '/refund-policy',
-    changeFrequency: 'yearly',
-    priority: 0.3,
-    lastModified: '2026-08-01',
-  },
-];
+/** OG image used for all indexable pages. */
+const ogImageUrl = `${SITE_URL}${DEFAULT_OG_IMAGE}`;
 
-/**
- * Generate the sitemap entries consumed by Next.js at build / request time.
- *
- * @returns Array of sitemap entries with absolute URLs.
- */
+// ─── Last-Modified Date Buckets ───────────────────────────────────────────────
+// Update these when you ship meaningful content changes to each group.
+
+/** Most recent deploy / content update. */
+const TODAY = new Date('2026-10-21');
+
+/** Original site launch date. */
+const LAUNCH = new Date('2026-09-28');
+
+/** Last time legal copy was reviewed and updated. */
+const LEGAL_UPDATE = new Date('2026-08-01');
+
+// ─── Sitemap ──────────────────────────────────────────────────────────────────
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  return ROUTES.map((route) => ({
-    url: `${SITE_URL}${route.path === '/' ? '' : route.path}`,
-    lastModified: new Date(route.lastModified),
-    changeFrequency: route.changeFrequency,
-    priority: route.priority,
-  }));
+  return [
+
+    // ── Home ──────────────────────────────────────────────────────────────────
+    {
+      url: url('/'),
+      lastModified: TODAY,
+      changeFrequency: 'weekly',
+      priority: 1.0,
+      images: [ogImageUrl],
+    },
+
+    // ── Core Product Pages ────────────────────────────────────────────────────
+    {
+      url: url('/how-it-works'),
+      lastModified: TODAY,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+      images: [ogImageUrl],
+    },
+    {
+      url: url('/students'),
+      lastModified: TODAY,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+      images: [ogImageUrl],
+    },
+
+    // ── Community & Brand Pages ───────────────────────────────────────────────
+    {
+      url: url('/ambassador'),
+      lastModified: LAUNCH,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+      images: [ogImageUrl],
+    },
+    {
+      url: url('/about'),
+      lastModified: LAUNCH,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+      images: [ogImageUrl],
+    },
+
+    // ── Discovery / Trust Pages ───────────────────────────────────────────────
+    {
+      url: url('/blog'),
+      lastModified: TODAY,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+      images: [ogImageUrl],
+    },
+    {
+      url: url('/contact'),
+      lastModified: LAUNCH,
+      changeFrequency: 'yearly',
+      priority: 0.7,
+      images: [ogImageUrl],
+    },
+
+    // ── Legal / Policy Pages ──────────────────────────────────────────────────
+    // No images — legal pages don't need image indexing.
+    {
+      url: url('/terms'),
+      lastModified: LEGAL_UPDATE,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: url('/privacy'),
+      lastModified: LEGAL_UPDATE,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: url('/refund-policy'),
+      lastModified: LEGAL_UPDATE,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+  ];
 }

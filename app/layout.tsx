@@ -17,7 +17,7 @@
  *        - Plus Jakarta Sans (body)
  *        - JetBrains Mono (code / labels)
  *
- *   4. **Global Chrome** — Renders the persistent `<Navbar />` above
+ *   4. **Global Chrome** — Renders the persistent `<NavSidebar />` above
  *      every page.
  *
  * @see https://nextjs.org/docs/app/building-your-application/routing/layouts-and-templates
@@ -25,7 +25,7 @@
 
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
-import { Navbar } from '@/components/landing/Navbar';
+import { NavSidebar } from '@/components/landing/NavSidebar';
 import {
   buildMetadata,
   generateOrganization,
@@ -223,7 +223,7 @@ export default function RootLayout({
         suppressHydrationWarning
         className="antialiased overflow-x-clip max-w-full selection:bg-accent-purple selection:text-white"
       >
-        <Navbar />
+        <NavSidebar />
         {children}
       </body>
     </html>

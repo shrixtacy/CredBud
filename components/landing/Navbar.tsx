@@ -66,12 +66,12 @@ export const Navbar = () => {
           {/* Left: Brand Logo & Title */}
           <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
             <img
-              src="/images/creditbuddy-logo.png"
+              src="/images/creditbuddy-logo.webp"
               alt="CreditBuddy Logo"
               className="h-7 sm:h-8 md:h-9 w-auto object-contain transition-transform group-hover:scale-105"
             />
             <img
-              src="/images/creditbuddy-text-logo.png"
+              src="/images/creditbuddy-text-logo.webp"
               alt="CreditBuddy"
               className="h-4 sm:h-5 md:h-6 w-auto object-contain transition-transform group-hover:scale-105"
             />

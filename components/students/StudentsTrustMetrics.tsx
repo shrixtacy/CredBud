@@ -9,10 +9,10 @@ if (typeof window !== 'undefined') {
 }
 
 const METRICS = [
-  { value: '62,000+', label: 'Active Students' },
-  { value: '400+', label: 'College Campuses' },
-  { value: '₹12 Cr+', label: 'Disbursed Safely' },
-  { value: '4.9 ★', label: 'App Store Rating' },
+  { value: '999+', label: 'Active Students' },
+  { value: '30+', label: 'College Campuses' },
+  { value: '₹5 Lakh+', label: 'Disbursed Safely' },
+  { value: '4.7 ★', label: 'App Store Rating' },
 ];
 
 export const StudentsTrustMetrics = () => {

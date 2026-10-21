@@ -198,12 +198,14 @@ export function buildMetadata(opts: MetadataOptions): Metadata {
     // ── Icons ───────────────────────────────────────────────────────
     icons: {
       icon: [
-        { url: '/images/creditbuddy-logo.png', sizes: '32x32', type: 'image/png' },
-        { url: '/images/creditbuddy-logo.png', sizes: '16x16', type: 'image/png' },
+        { url: '/images/favicon-square.png', sizes: '32x32',  type: 'image/png' },
+        { url: '/images/favicon-square.png', sizes: '16x16',  type: 'image/png' },
+        { url: '/images/favicon-square.png', sizes: '192x192', type: 'image/png' },
       ],
       apple: [
-        { url: '/images/creditbuddy-logo.png', sizes: '180x180', type: 'image/png' },
+        { url: '/images/favicon-square.png', sizes: '180x180', type: 'image/png' },
       ],
+      shortcut: '/images/favicon-square.png',
     },
 
     // ── Manifest ────────────────────────────────────────────────────

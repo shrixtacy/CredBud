@@ -92,7 +92,7 @@ export const StackPanelCampusRewards = () => {
             <div className="scrapbook-item absolute left-[2%] md:left-[4%] top-[4%] md:top-[6%] w-48 md:w-64 pointer-events-auto cursor-pointer z-20">
               <div className="animate-sticker-1 drop-shadow-2xl">
                 <img 
-                  src="/images/sticker1.png" 
+                  src="/images/sticker1.webp" 
                   alt="Coffee Sticker" 
                   className="w-full h-auto object-contain pointer-events-none transition-transform duration-300 hover:scale-110" 
                 />
@@ -103,7 +103,7 @@ export const StackPanelCampusRewards = () => {
             <div className="scrapbook-item absolute right-[2%] md:right-[4%] top-[4%] md:top-[6%] w-48 md:w-64 pointer-events-auto cursor-pointer z-20">
               <div className="animate-sticker-2 drop-shadow-2xl">
                 <img 
-                  src="/images/sticker2.png" 
+                  src="/images/sticker2.webp" 
                   alt="Flight Tickets Sticker" 
                   className="w-full h-auto object-contain pointer-events-none transition-transform duration-300 hover:scale-110" 
                 />
@@ -114,7 +114,7 @@ export const StackPanelCampusRewards = () => {
             <div className="scrapbook-item absolute left-[3%] md:left-[5%] bottom-[4%] md:bottom-[6%] w-48 md:w-64 pointer-events-auto cursor-pointer z-20">
               <div className="animate-sticker-3 drop-shadow-2xl">
                 <img 
-                  src="/images/sticker3.png" 
+                  src="/images/sticker3.webp" 
                   alt="Gold Coins Sticker" 
                   className="w-full h-auto object-contain pointer-events-none transition-transform duration-300 hover:scale-110" 
                 />
@@ -125,7 +125,7 @@ export const StackPanelCampusRewards = () => {
             <div className="scrapbook-item absolute right-[2%] md:right-[4%] bottom-[3%] md:bottom-[5%] w-52 md:w-72 pointer-events-auto cursor-pointer z-20">
               <div className="animate-sticker-4 drop-shadow-2xl">
                 <img 
-                  src="/images/sticker4.png" 
+                  src="/images/sticker4.webp" 
                   alt="Campus Friends Sticker" 
                   className="w-full h-auto object-contain pointer-events-none transition-transform duration-300 hover:scale-110" 
                 />
