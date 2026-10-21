@@ -59,7 +59,7 @@ export const StudentsBorrowSection = () => {
           <div className="borrow-card-item bg-accent-lime brutal-card p-8 flex flex-col justify-between min-h-[260px]">
             <span className="font-jetbrains text-xs font-bold text-ink">01 // INSTANT</span>
             <div>
-              <h3 className="font-bricolage text-3xl font-extrabold text-ink mb-2">₹500 to ₹50,000</h3>
+              <h3 className="font-bricolage text-3xl font-extrabold text-ink mb-2">₹500 to ₹10,000</h3>
               <p className="font-jakarta text-xs text-ink/80">Instant transfer directly to your bank account or UPI.</p>
             </div>
           </div>

@@ -38,7 +38,9 @@ export const InteractiveFlow = () => {
       }
     };
 
-    if (isLocked) {
+    const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 768;
+
+    if (isLocked && isDesktop) {
       window.addEventListener('wheel', preventScroll, { passive: false });
       window.addEventListener('touchmove', preventScroll, { passive: false });
       window.addEventListener('keydown', preventKeys, { passive: false });
@@ -73,10 +75,10 @@ export const InteractiveFlow = () => {
       start: 'top top',
       end: 'top+=10 top',
       onEnter: () => {
-        if (!isBooted) {
+        if (!isBooted && typeof window !== 'undefined' && window.innerWidth >= 768) {
           if (lenis && outerContainerRef.current) {
             lenis.scrollTo(outerContainerRef.current, { immediate: true });
-          } else {
+          } else if (typeof window !== 'undefined') {
             window.scrollTo({
               top: outerContainerRef.current?.offsetTop || 0,
               behavior: 'auto',
@@ -86,10 +88,10 @@ export const InteractiveFlow = () => {
         }
       },
       onEnterBack: () => {
-        if (!isBooted) {
+        if (!isBooted && typeof window !== 'undefined' && window.innerWidth >= 768) {
           if (lenis && outerContainerRef.current) {
             lenis.scrollTo(outerContainerRef.current, { immediate: true });
-          } else {
+          } else if (typeof window !== 'undefined') {
             window.scrollTo({
               top: outerContainerRef.current?.offsetTop || 0,
               behavior: 'auto',
@@ -107,9 +109,9 @@ export const InteractiveFlow = () => {
 
   // Listen to lenis scroll directly for snap-locking to prevent fast scrolling bypass
   useLenis((lenisInstance) => {
-    if (!isBooted && !isLocked) {
+    if (!isBooted && !isLocked && typeof window !== 'undefined' && window.innerWidth >= 768) {
       const topOfSection = outerContainerRef.current?.offsetTop || 0;
-      if (lenisInstance.scroll >= topOfSection - 10) {
+      if (topOfSection > 0 && lenisInstance.scroll >= topOfSection - 10) {
         if (outerContainerRef.current) {
           lenisInstance.scrollTo(outerContainerRef.current, { immediate: true });
         }
@@ -306,7 +308,7 @@ export const InteractiveFlow = () => {
   }, [isBooted]);
 
   return (
-    <div ref={outerContainerRef} className="relative w-full min-h-[400vh] bg-ink">
+    <div ref={outerContainerRef} className="hidden md:block relative w-full min-h-[400vh] bg-ink">
       
       {/* Full-viewport scene display container */}
       <section 
@@ -441,44 +443,109 @@ export const InteractiveFlow = () => {
                       </p>
                     </div>
 
-                    {/* Touch ID Trigger */}
+                  {/* Touch ID Trigger */}
                     <div className="flex flex-col items-center space-y-4 relative">
-                      <button
-                        onMouseDown={startHolding}
-                        onMouseUp={stopHolding}
-                        onMouseLeave={stopHolding}
-                        onTouchStart={startHolding}
-                        onTouchEnd={stopHolding}
-                        className={`w-20 h-20 rounded-full brutal-border bg-accent-lime/20 flex items-center justify-center relative cursor-pointer outline-none transition-all duration-300 select-none ${
-                          isHolding ? 'scale-90 bg-accent-lime/50 shadow-lg' : 'hover:scale-105 active:scale-95'
-                        }`}
-                      >
-                        {/* Circular Progress Loader SVG */}
-                        <svg className="absolute inset-0 w-full h-full -rotate-90">
-                          <circle
-                            cx="50%"
-                            cy="50%"
-                            r="36"
-                            stroke="url(#progress-gradient)"
-                            strokeWidth="3.5"
-                            fill="transparent"
-                            strokeDasharray={2 * Math.PI * 36}
-                            strokeDashoffset={2 * Math.PI * 36 * (1 - bootProgress / 100)}
-                            strokeLinecap="round"
-                            className="transition-all"
+
+                      {/* Pulsing attention rings */}
+                      <div className="relative flex items-center justify-center">
+                        {/* Ring 3 — outermost, slowest */}
+                        <span
+                          className="absolute rounded-full border-2 border-accent-lime/20"
+                          style={{
+                            width: 140, height: 140,
+                            animation: 'ping-slow 2.4s cubic-bezier(0,0,0.2,1) infinite',
+                          }}
+                        />
+                        {/* Ring 2 */}
+                        <span
+                          className="absolute rounded-full border-2 border-accent-lime/35"
+                          style={{
+                            width: 116, height: 116,
+                            animation: 'ping-slow 2.4s cubic-bezier(0,0,0.2,1) 0.35s infinite',
+                          }}
+                        />
+                        {/* Ring 1 — closest */}
+                        <span
+                          className="absolute rounded-full border-2 border-accent-lime/55"
+                          style={{
+                            width: 96, height: 96,
+                            animation: 'ping-slow 2.4s cubic-bezier(0,0,0.2,1) 0.7s infinite',
+                          }}
+                        />
+
+                        {/* The button itself */}
+                        <button
+                          onMouseDown={startHolding}
+                          onMouseUp={stopHolding}
+                          onMouseLeave={stopHolding}
+                          onTouchStart={startHolding}
+                          onTouchEnd={stopHolding}
+                          className={`fingerprint-btn w-20 h-20 rounded-full bg-accent-lime/20 flex items-center justify-center relative cursor-pointer outline-none select-none transition-all duration-300 ${
+                            isHolding
+                              ? 'scale-90 bg-accent-lime/60'
+                              : 'hover:scale-110 active:scale-95'
+                          }`}
+                          style={{
+                            border: `2.5px solid ${isHolding ? '#C8FF3D' : 'rgba(200,255,61,0.6)'}`,
+                            boxShadow: isHolding
+                              ? '0 0 0 6px rgba(200,255,61,0.25), 0 0 32px rgba(200,255,61,0.5)'
+                              : '0 0 0 3px rgba(200,255,61,0.15), 0 0 18px rgba(200,255,61,0.25)',
+                          }}
+                        >
+                          {/* Circular Progress Loader SVG */}
+                          <svg className="absolute inset-0 w-full h-full -rotate-90">
+                            <circle
+                              cx="50%"
+                              cy="50%"
+                              r="36"
+                              stroke="url(#progress-gradient)"
+                              strokeWidth="3.5"
+                              fill="transparent"
+                              strokeDasharray={2 * Math.PI * 36}
+                              strokeDashoffset={2 * Math.PI * 36 * (1 - bootProgress / 100)}
+                              strokeLinecap="round"
+                              className="transition-all"
+                            />
+                          </svg>
+
+                          <Fingerprint
+                            className={`w-9 h-9 transition-all duration-300 ${
+                              isHolding ? 'text-accent-lime scale-110' : 'text-ink/50'
+                            }`}
                           />
-                        </svg>
+                        </button>
+                      </div>
 
-                        <Fingerprint className={`w-8 h-8 transition-colors duration-300 ${isHolding ? 'text-accent-purple' : 'text-ink/40'}`} />
-                      </button>
-
-                      <div className="text-center">
-                        <span className="block text-[8px] font-bold uppercase tracking-[0.2em] text-accent-purple animate-pulse font-jetbrains">
-                          {isHolding ? 'Booting App...' : 'Hold Finger to Boot'}
+                      {/* Label + animated caret */}
+                      <div className="text-center space-y-1">
+                        <span className="flex items-center justify-center gap-1.5">
+                          <span className="block text-[8px] font-bold uppercase tracking-[0.22em] text-accent-purple font-jetbrains">
+                            {isHolding ? 'Booting App...' : 'Hold Finger to Boot'}
+                          </span>
+                          <span
+                            className="inline-block w-[2px] h-[10px] bg-accent-purple"
+                            style={{ animation: 'blink-caret 1s step-end infinite' }}
+                          />
                         </span>
-                        <span className="block text-[7px] text-ink-muted uppercase tracking-[0.1em] mt-1 font-jetbrains">
+                        <span className="block text-[7px] text-ink-muted uppercase tracking-[0.12em] font-jetbrains">
                           Keep pressed for 2 seconds
                         </span>
+                      </div>
+
+                      {/* Three bouncing arrows pointing up at the button */}
+                      <div className="flex flex-col items-center -mt-1" style={{ transform: 'rotate(180deg)' }}>
+                        {[0, 0.18, 0.36].map((delay, i) => (
+                          <svg
+                            key={i}
+                            width="12"
+                            height="8"
+                            viewBox="0 0 12 8"
+                            fill="none"
+                            style={{ animation: `bounce-arrow 1s ease-in-out ${delay}s infinite`, opacity: 1 - i * 0.28 }}
+                          >
+                            <path d="M1 1L6 7L11 1" stroke="#C8FF3D" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        ))}
                       </div>
                     </div>
                   </div>

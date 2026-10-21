@@ -30,6 +30,7 @@ import { IntroSequence } from '@/components/landing/IntroSequence';
 import { Hero } from '@/components/landing/Hero';
 import { HeroMarquee } from '@/components/landing/HeroMarquee';
 import { WhyWeExist } from '@/components/landing/WhyWeExist';
+import { InteractiveFlow } from '@/components/landing/InteractiveFlow';
 import { StickyStack } from '@/components/landing/StickyStack/StickyStack';
 import { HorizontalJourney } from '@/components/landing/HorizontalJourney/HorizontalJourney';
 import { SignatureMarquee } from '@/components/landing/SignatureMarquee';
@@ -80,6 +81,7 @@ export default function Home() {
         <IntroSequence />
         <Hero />
         <HeroMarquee />
+        <InteractiveFlow />
         <WhyWeExist />
         <StickyStack />
         <HorizontalJourney />

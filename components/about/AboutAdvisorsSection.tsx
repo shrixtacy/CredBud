@@ -11,7 +11,7 @@ const ADVISORS = [
     detail: 'RBI frameworks and governance — ensuring full regulatory compliance.',
   },
   {
-    name: 'Nidhi Agrawal',
+    name: 'CA Nidhi Agrawal',
     role: 'FINANCE & COMPLIANCE ADVISOR',
     detail: 'Oversees financial structuring, compliance, and regulatory alignment across CreditBuddy. Ensures accurate reporting, clean accounting systems, and adherence to all statutory and RBI guidelines.',
   },
