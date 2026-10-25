@@ -8,9 +8,16 @@
  *  - Fixed top-right: hamburger trigger circle
  *  - On open: full-height right-side drawer with rainbow accent stripe,
  *    numbered nav links, and a social / copyright footer.
+ *
+ * Behaviours:
+ *  - Buttons are hidden during loading (intro sequence) and appear once
+ *    the hero section has fully loaded (after ~5 s).
+ *  - When scrolling DOWN past the hero, buttons slide up and hide.
+ *  - When scrolling UP, buttons reappear.
+ *  - On mobile the sidebar covers the full viewport width.
  */
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import gsap from 'gsap';
@@ -32,6 +39,52 @@ const NAV_LINKS = [
 export const NavSidebar = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+
+  // ── Nav button visibility ───────────────────────────────────────────────
+  // Hidden during intro sequence; revealed after hero loads (~5 s).
+  // Then hide on scroll-down, show on scroll-up.
+  const [buttonsReady, setButtonsReady] = useState(false);
+  const [buttonsVisible, setButtonsVisible] = useState(true);
+  const lastScrollY = useRef(0);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    // Delay appearance to match the intro sequence (~4.5 s of animation)
+    const revealTimer = setTimeout(() => setButtonsReady(true), 4800);
+    return () => clearTimeout(revealTimer);
+  }, []);
+
+  useEffect(() => {
+    if (!buttonsReady) return;
+
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      const delta = currentY - lastScrollY.current;
+
+      if (currentY < 60) {
+        // Near top — always visible
+        setButtonsVisible(true);
+      } else if (delta > 4) {
+        // Scrolling DOWN — hide
+        setButtonsVisible(false);
+      } else if (delta < -4) {
+        // Scrolling UP — show
+        setButtonsVisible(true);
+      }
+
+      lastScrollY.current = currentY;
+
+      // Safety: if user stops scrolling, reappear
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+      scrollTimeoutRef.current = setTimeout(() => setButtonsVisible(true), 800);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+    };
+  }, [buttonsReady]);
 
   const sidebarRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -97,13 +150,22 @@ export const NavSidebar = () => {
 
   const toggle = () => (isOpen ? close() : open());
 
+  // Combined visibility: ready + visible (or sidebar is open — keep buttons accessible)
+  const showButtons = buttonsReady && (buttonsVisible || isOpen);
+
   return (
     <>
       {/* ── Top-Left Logo Circle ─────────────────────────────────── */}
       <Link
         href="/"
         aria-label="CreditBuddy Home"
-        className="fixed top-5 left-6 z-[10001] w-[52px] h-[52px] rounded-full bg-white brutal-border brutal-shadow-sm flex items-center justify-center hover:scale-105 active:scale-95 transition-transform duration-200 select-none"
+        className="fixed top-5 left-6 z-[10001] w-[52px] h-[52px] rounded-full bg-white brutal-border brutal-shadow-sm flex items-center justify-center hover:scale-105 active:scale-95 select-none"
+        style={{
+          opacity: showButtons ? 1 : 0,
+          transform: showButtons ? 'translateY(0)' : 'translateY(-20px)',
+          pointerEvents: showButtons ? 'auto' : 'none',
+          transition: 'opacity 0.35s ease, transform 0.35s ease',
+        }}
       >
         <img
           src="/images/creditbuddy-logo.webp"
@@ -119,7 +181,13 @@ export const NavSidebar = () => {
         aria-label="Toggle navigation"
         aria-expanded={isOpen}
         suppressHydrationWarning
-        className="fixed top-5 right-6 z-[10001] w-[52px] h-[52px] rounded-full bg-white brutal-border brutal-shadow-sm flex flex-col items-center justify-center gap-[5px] hover:scale-105 active:scale-95 transition-transform duration-200 cursor-pointer"
+        className="fixed top-5 right-6 z-[10001] w-[52px] h-[52px] rounded-full bg-white brutal-border brutal-shadow-sm flex flex-col items-center justify-center gap-[5px] hover:scale-105 active:scale-95 cursor-pointer"
+        style={{
+          opacity: showButtons ? 1 : 0,
+          transform: showButtons ? 'translateY(0)' : 'translateY(-20px)',
+          pointerEvents: showButtons ? 'auto' : 'none',
+          transition: 'opacity 0.35s ease, transform 0.35s ease',
+        }}
       >
         <span ref={line1} className="block w-[18px] h-[2px] bg-ink rounded-full origin-center" />
         <span ref={line2} className="block w-[18px] h-[2px] bg-ink rounded-full origin-center" />
@@ -140,7 +208,8 @@ export const NavSidebar = () => {
         className="fixed top-0 right-0 h-screen z-[9999] flex"
         style={{
           transform: 'translateX(100%)',
-          width: 'min(560px, 50vw)',
+          // Full-width on mobile, capped panel on larger screens
+          width: 'min(560px, 100vw)',
           visibility: isOpen ? 'visible' : 'hidden',
         }}
       >
@@ -227,8 +296,8 @@ export const NavSidebar = () => {
                   {/* Arrow circle */}
                   <span
                     className={`relative w-8 h-8 rounded-full border border-ink flex items-center justify-center transition-all duration-300 text-ink text-sm flex-shrink-0 ${isActive
-                        ? 'bg-accent-lime'
-                        : 'bg-white group-hover:bg-accent-lime group-hover:translate-x-0.5'
+                      ? 'bg-accent-lime'
+                      : 'bg-white group-hover:bg-accent-lime group-hover:translate-x-0.5'
                       }`}
                   >
                     →
@@ -257,9 +326,9 @@ export const NavSidebar = () => {
                 className="text-ink/40 hover:text-accent-purple transition-colors duration-200"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="1.8"/>
-                  <circle cx="12" cy="12" r="4.5" stroke="currentColor" strokeWidth="1.8"/>
-                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+                  <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="1.8" />
+                  <circle cx="12" cy="12" r="4.5" stroke="currentColor" strokeWidth="1.8" />
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
                 </svg>
               </a>
 
@@ -272,7 +341,7 @@ export const NavSidebar = () => {
                 className="text-ink/40 hover:text-accent-purple transition-colors duration-200"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L2.25 2.25h6.985l4.26 5.633 4.749-5.633Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L2.25 2.25h6.985l4.26 5.633 4.749-5.633Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
                 </svg>
               </a>
 
@@ -285,11 +354,11 @@ export const NavSidebar = () => {
                 className="text-ink/40 hover:text-accent-purple transition-colors duration-200"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" strokeWidth="1.8"/>
-                  <path d="M7 10v7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
-                  <circle cx="7" cy="7.5" r="1" fill="currentColor"/>
-                  <path d="M11 17v-4a2 2 0 0 1 4 0v4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
-                  <path d="M11 10v7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+                  <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" strokeWidth="1.8" />
+                  <path d="M7 10v7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                  <circle cx="7" cy="7.5" r="1" fill="currentColor" />
+                  <path d="M11 17v-4a2 2 0 0 1 4 0v4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                  <path d="M11 10v7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
                 </svg>
               </a>
               <span className="ml-auto font-jetbrains text-[10px] text-ink/30">

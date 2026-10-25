@@ -39,16 +39,16 @@ interface FormConfig {
 
 const FORM_CONFIGS: FormConfig[] = [
   {
-    id: 'investor',
-    label: 'Investor',
-    tag: '// investor inquiry',
-    tagColor: 'text-accent-purple',
-    accentColor: '#7B5CFF',
-    pill: 'bg-accent-purple',
-    description: 'Interested in backing the future of student credit in India? Share your details and we\'ll get our founders in touch.',
-    pptTitle: 'Investor Deck — CreditBuddy',
-    pptDesc: 'Full pitch deck with financials, market opportunity, traction, and team.',
-    hasPpt: true,
+    id: 'general',
+    label: 'In-General',
+    tag: '// general inquiry',
+    tagColor: 'text-accent-coral',
+    accentColor: '#FF5A3C',
+    pill: 'bg-accent-coral',
+    description: 'Have questions, feedback, or anything else on your mind? Drop us a message and we\'ll get back to you within 2 hours.',
+    pptTitle: '',
+    pptDesc: '',
+    hasPpt: false,
   },
   {
     id: 'partnership',
@@ -63,16 +63,16 @@ const FORM_CONFIGS: FormConfig[] = [
     hasPpt: true,
   },
   {
-    id: 'general',
-    label: 'In-General',
-    tag: '// general inquiry',
-    tagColor: 'text-accent-coral',
-    accentColor: '#FF5A3C',
-    pill: 'bg-accent-coral',
-    description: 'Have questions, feedback, or anything else on your mind? Drop us a message and we\'ll get back to you within 2 hours.',
-    pptTitle: '',
-    pptDesc: '',
-    hasPpt: false,
+    id: 'investor',
+    label: 'Investor',
+    tag: '// investor inquiry',
+    tagColor: 'text-accent-purple',
+    accentColor: '#7B5CFF',
+    pill: 'bg-accent-purple',
+    description: 'Interested in backing the future of student credit in India? Share your details and we\'ll get our founders in touch.',
+    pptTitle: 'Investor Deck — CreditBuddy',
+    pptDesc: 'Full pitch deck with financials, market opportunity, traction, and team.',
+    hasPpt: true,
   },
 ];
 
@@ -302,7 +302,7 @@ function PptSection({ unlocked, config }: { unlocked: boolean; config: FormConfi
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export const ContactHeroForm = () => {
-  const [activeType, setActiveType] = useState<FormType>('investor');
+  const [activeType, setActiveType] = useState<FormType>('general');
   const [submitted, setSubmitted] = useState<Record<FormType, boolean>>({
     investor: false,
     partnership: false,

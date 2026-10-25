@@ -177,7 +177,7 @@ export const AboutValuesGrid = () => {
               </div>
               <div className="text-center px-4">
                 <span className="font-jetbrains text-xs text-accent-purple font-bold block uppercase mb-1">Graduation</span>
-                <span className="font-bricolage text-2xl font-extrabold text-accent-purple">750+ CIBIL</span>
+                <span className="font-bricolage text-2xl font-extrabold text-accent-purple">720+ CIBIL</span>
               </div>
             </div>
           </motion.div>
