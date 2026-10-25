@@ -9,15 +9,15 @@ if (typeof window !== 'undefined') {
 }
 
 const REASONS = [
-  { id: 'semester', label: 'Semester fees', amount: 25000, term: 6 },
-  { id: 'laptop', label: 'New Laptop', amount: 40000, term: 9 },
-  { id: 'hostel', label: 'Hostel deposit', amount: 15000, term: 4 },
-  { id: 'emergency', label: 'Emergency', amount: 8000, term: 3 },
+  { id: 'semester', label: 'Semester fees', amount: 8000, term: 6 },
+  { id: 'laptop', label: 'New Laptop', amount: 10000, term: 9 },
+  { id: 'hostel', label: 'Hostel deposit', amount: 5000, term: 4 },
+  { id: 'emergency', label: 'Emergency', amount: 3000, term: 3 },
 ];
 
 export const InteractiveLoanCalculator = () => {
   const [selectedReason, setSelectedReason] = useState('semester');
-  const [amount, setAmount] = useState(25000);
+  const [amount, setAmount] = useState(8000);
   const [term, setTerm] = useState(6);
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -216,9 +216,9 @@ export const InteractiveLoanCalculator = () => {
               </div>
               <input
                 type="range"
-                min="2000"
-                max="50000"
-                step="1000"
+                min="500"
+                max="10000"
+                step="500"
                 value={amount}
                 onChange={(e) => setAmount(Number(e.target.value))}
                 className="w-full h-3 bg-white/20 rounded-lg appearance-none cursor-pointer accent-accent-lime"
@@ -307,9 +307,9 @@ export const InteractiveLoanCalculator = () => {
         <div className="mb-6">
           <input
             type="range"
-            min="2000"
-            max="50000"
-            step="1000"
+            min="500"
+            max="10000"
+            step="500"
             value={amount}
             onChange={(e) => setAmount(Number(e.target.value))}
             className="w-full h-2.5 bg-white/20 rounded-lg appearance-none cursor-pointer accent-accent-lime"
